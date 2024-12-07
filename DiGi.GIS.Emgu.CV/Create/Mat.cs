@@ -13,8 +13,13 @@ namespace DiGi.GIS.Emgu.CV
                 return null;
             }
 
-            byte[] bytes = ortoDatas.GetBytes(dateTime);
-            if(bytes == null)
+            return Mat(ortoDatas.GetOrtoData(dateTime));
+        }
+
+        public static Mat Mat(this OrtoData ortoData)
+        {
+            byte[] bytes = ortoData?.Bytes;
+            if (bytes == null)
             {
                 return null;
             }

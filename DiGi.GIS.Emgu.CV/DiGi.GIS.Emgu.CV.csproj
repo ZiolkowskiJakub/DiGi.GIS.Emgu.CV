@@ -35,6 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Classes\OrtoImageComparisonGroup.cs" />
+    <None Include="Classes\OrtoDatasComparison.cs" />
+    <None Include="Classes\OrtoImageComparison.cs" />
     <None Include="Classes\OrtoDataComparison.cs" />
   </ItemGroup>
 
