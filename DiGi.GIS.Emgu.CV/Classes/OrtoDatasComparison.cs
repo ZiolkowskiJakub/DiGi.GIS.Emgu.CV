@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace DiGi.GIS.Emgu.CV.Classes
 {
-    public class OrtoDatasComparison : Core.Classes.SerializableObject, Interfaces.IGISObject
+    public class OrtoDatasComparison : Core.Classes.UniqueObject, Interfaces.IGISObject
     {
         [JsonInclude, JsonPropertyName("Reference")]
         private string reference;
