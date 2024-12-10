@@ -26,6 +26,9 @@
     <Reference Include="DiGi.Core.Parameter">
       <HintPath>..\references\DiGi.Core.Parameter.dll</HintPath>
     </Reference>
+    <Reference Include="DiGi.Core.Relation">
+      <HintPath>..\references\DiGi.Core.Relation.dll</HintPath>
+    </Reference>
     <Reference Include="DiGi.Emgu.CV">
       <HintPath>..\references\DiGi.Emgu.CV.dll</HintPath>
     </Reference>
