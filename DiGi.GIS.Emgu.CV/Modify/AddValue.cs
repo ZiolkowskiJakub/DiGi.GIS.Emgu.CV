@@ -1,13 +1,12 @@
 ﻿using DiGi.Core.Classes;
 using DiGi.GIS.Classes;
 using DiGi.GIS.Emgu.CV.Classes;
-using System.Threading.Tasks;
 
 namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Modify
     {
-        public static async Task<UniqueReference> AddValue(this OrtoDatasComparisonFile ortoDatasComparisonFile, Building2D builidng2D, OrtoDatasComparisonOptions ortoDatasComparisonOptions = null)
+        public static UniqueReference AddValue(this OrtoDatasComparisonFile ortoDatasComparisonFile, GISModelFile gISModelFile, Building2D builidng2D, OrtoDatasComparisonOptions ortoDatasComparisonOptions = null)
         {
             if (ortoDatasComparisonFile == null || builidng2D == null)
             {
@@ -19,7 +18,7 @@ namespace DiGi.GIS.Emgu.CV
                 ortoDatasComparisonOptions = new OrtoDatasComparisonOptions();
             }
 
-            OrtoDatasComparison ortoDatasComparison = null;//await Create.OrtoDatas(builidng2D, ortoDatasOptions.Years, ortoDatasOptions.Offset, ortoDatasOptions.Width, ortoDatasOptions.Reduce);
+            OrtoDatasComparison ortoDatasComparison = Create.OrtoDatasComparison(gISModelFile, builidng2D, ortoDatasComparisonOptions.OrtoDatasOptions.Years);
             if(ortoDatasComparison == null)
             {
                 return null;

@@ -68,7 +68,9 @@ namespace DiGi.GIS.Emgu.CV
                         continue;
                     }
 
-                    UniqueReference uniqueReference = await ortoDatasComparisonFile.AddValue(building2D, ortoDatasComparisonOptions);
+                    HashSet<GuidReference> guidReferences = await GIS.Modify.CalculateOrtoDatas(gISModelFile, new Building2D[] { building2D }, ortoDatasComparisonOptions?.OrtoDatasOptions, overrideExisting);
+
+                    UniqueReference uniqueReference = ortoDatasComparisonFile.AddValue(gISModelFile, building2D, ortoDatasComparisonOptions);
                     if (uniqueReference == null)
                     {
                         continue;

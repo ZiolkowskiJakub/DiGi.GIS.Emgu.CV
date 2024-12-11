@@ -7,7 +7,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
     public class OrtoDatasComparisonOptions : ExtractOptions
     {
         [JsonInclude, JsonPropertyName("OrtoDatasOptions")]
-        public OrtoDatasOptions OrtoDatasOptions { get; set; }
+        public OrtoDatasOptions OrtoDatasOptions { get; set; } = new OrtoDatasOptions();
 
         public OrtoDatasComparisonOptions()
             : base()

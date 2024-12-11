@@ -1,4 +1,6 @@
-﻿using DiGi.Geometry.Planar.Classes;
+﻿using DiGi.Core.Classes;
+using DiGi.Geometry.Planar.Classes;
+using DiGi.GIS.Classes;
 using DiGi.GIS.Enums;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace DiGi.GIS.Emgu.CV.Classes
 {
-    public class OrtoDatasComparison : Core.Classes.UniqueObject, Interfaces.IGISObject
+    public class OrtoDatasComparison : UniqueObject, Interfaces.IGISObject
     {
         [JsonInclude, JsonPropertyName("Reference")]
         private string reference;
@@ -28,7 +30,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         private Point2D location;
 
         [JsonIgnore]
-        private Dictionary<DateTime, OrtoDataComparison> dictionary = new Dictionary<DateTime, OrtoDataComparison>();
+        private SortedDictionary<DateTime, OrtoDataComparison> sortedDictionary = new SortedDictionary<DateTime, OrtoDataComparison>();
 
         public OrtoDatasComparison(
             string reference, 
@@ -65,12 +67,12 @@ namespace DiGi.GIS.Emgu.CV.Classes
         {
             get
             {
-                return dictionary.Values;
+                return sortedDictionary.Values;
             }
 
             private set
             {
-                dictionary.Clear();
+                sortedDictionary.Clear();
                 if (value != null)
                 {
                     foreach (OrtoDataComparison ortoDataComparison in value)
@@ -80,7 +82,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
                             continue;
                         }
 
-                        dictionary[ortoDataComparison.DateTime] = ortoDataComparison;
+                        sortedDictionary[ortoDataComparison.DateTime] = ortoDataComparison;
                     }
                 }
             }
@@ -138,6 +140,32 @@ namespace DiGi.GIS.Emgu.CV.Classes
             {
                 return location;
             }
+        }
+
+        public Range<int> GetYears()
+        {
+            if(sortedDictionary == null)
+            {
+                return null;
+            }
+
+            List<int> years = new List<int>();
+            foreach(DateTime dateTime in sortedDictionary.Keys)
+            {
+                years.Add(dateTime.Year);
+            }
+
+            return new Range<int>(years);
+        }
+
+        public OrtoDataComparison GetOrtoDataComparison(DateTime dateTime)
+        {
+            if (!Core.Query.TryGetLowerValue(sortedDictionary, dateTime, out OrtoDataComparison result))
+            {
+                return null;
+            }
+
+            return result;
         }
     }
 }

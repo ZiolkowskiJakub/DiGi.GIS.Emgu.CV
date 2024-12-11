@@ -11,7 +11,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         private string name;
 
         [JsonIgnore]
-        private Dictionary<DateTime, OrtoImageComparison> dictionary = new Dictionary<DateTime, OrtoImageComparison>();
+        private SortedDictionary<DateTime, OrtoImageComparison> sortedDictionary = new SortedDictionary<DateTime, OrtoImageComparison>();
 
         public OrtoImageComparisonGroup(string name, IEnumerable<OrtoImageComparison> ortoImageComparisons)
         {
@@ -49,12 +49,12 @@ namespace DiGi.GIS.Emgu.CV.Classes
         {
             get
             {
-                return dictionary.Values;
+                return sortedDictionary.Values;
             }
 
             private set
             {
-                dictionary.Clear();
+                sortedDictionary.Clear();
                 if(value != null)
                 {
                     foreach(OrtoImageComparison ortoImageComparison in value)
@@ -64,10 +64,20 @@ namespace DiGi.GIS.Emgu.CV.Classes
                             continue;
                         }
 
-                        dictionary[ortoImageComparison.DateTime] = ortoImageComparison;
+                        sortedDictionary[ortoImageComparison.DateTime] = ortoImageComparison;
                     }
                 }
             }
+        }
+
+        public OrtoImageComparison GetOrtoImageComparison(DateTime dateTime)
+        {
+            if (!Core.Query.TryGetLowerValue(sortedDictionary, dateTime, out OrtoImageComparison result))
+            {
+                return null;
+            }
+
+            return result;
         }
     }
 }
