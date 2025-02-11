@@ -4,7 +4,7 @@ using System.Text.Json.Nodes;
 
 namespace DiGi.GIS.Emgu.CV.Classes
 {
-    public class OrtoDatasComparisonResult : Building2DExternalReferenceUniqueResult
+    public class OrtoDatasComparisonResult : Building2DExternalReferenceGuidResult
     {
         public OrtoDatasComparisonResult(InstanceRelatedExternalReference reference)
             :base(reference)
