@@ -59,7 +59,7 @@ namespace DiGi.GIS.Emgu.CV
             {
                 ortoDatasComparisonFile.Open();
 
-                string path_Relative = Core.IO.Query.RelativePath(path_Model, path_OrtoDatasComparison);
+                string path_Relative = Core.IO.Query.RelativePath(directory, path_OrtoDatasComparison);
 
                 foreach (Building2D building2D in building2Ds_All)
                 {
