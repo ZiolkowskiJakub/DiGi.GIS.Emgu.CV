@@ -8,7 +8,7 @@ namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Modify
     {
-        public static async Task<HashSet<GuidReference>> CalculateOrtoDatasComparisons(this GISModelFile gISModelFile, IEnumerable<Building2D> building2Ds, OrtoDatasComparisonOptions ortoDatasComparisonOptions, bool overrideExisting = false)
+        public static async Task<HashSet<GuidReference>> CalculateOrtoDatasComparisons(this GISModelFile gISModelFile, IEnumerable<Building2D> building2Ds, OrtoDatasComparisonOptions ortoDatasComparisonOptions, int count)
         {
             if (gISModelFile == null || building2Ds == null)
             {
@@ -63,12 +63,12 @@ namespace DiGi.GIS.Emgu.CV
 
                 foreach (Building2D building2D in building2Ds_All)
                 {
-                    if (!overrideExisting && gISModel.TryGetRelatedObject(building2D, out OrtoDatasComparisonResult ortoDatasComparisonResult) && ortoDatasComparisonResult != null)
+                    if (!ortoDatasComparisonOptions.OverrideExisting && gISModel.TryGetRelatedObject(building2D, out OrtoDatasComparisonResult ortoDatasComparisonResult) && ortoDatasComparisonResult != null)
                     {
                         continue;
                     }
 
-                    HashSet<GuidReference> guidReferences = await GIS.Modify.CalculateOrtoDatas(gISModelFile, new Building2D[] { building2D }, ortoDatasComparisonOptions?.OrtoDatasOptions, overrideExisting);
+                    HashSet<GuidReference> guidReferences = await GIS.Modify.CalculateOrtoDatas(gISModelFile, new Building2D[] { building2D }, ortoDatasComparisonOptions?.OrtoDatasOptions, ortoDatasComparisonOptions.OverrideExisting);
 
                     UniqueReference uniqueReference = ortoDatasComparisonFile.AddValue(gISModelFile, building2D, ortoDatasComparisonOptions);
                     if (uniqueReference == null)
