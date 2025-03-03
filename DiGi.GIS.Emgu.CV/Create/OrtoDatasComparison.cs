@@ -7,27 +7,38 @@ using Emgu.CV;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Create
     {
-        public static OrtoDatasComparison OrtoDatasComparison(this GISModelFile gISModelFile, Building2D building2D, Core.Classes.Range<int> years)
+        public static OrtoDatasComparison OrtoDatasComparison(this GISModel gISModel, Building2D building2D, string directory, Core.Classes.Range<int> years)
         {
-            if (gISModelFile == null || building2D == null || years == null || years.Length <= 0)
+            if (string.IsNullOrWhiteSpace(directory) || building2D == null || years == null || years.Length <= 0)
+            {
+                return null;
+            }
+
+            OrtoDatas ortoDatas = GIS.Query.OrtoDatas(building2D, directory);
+            if(ortoDatas == null)
+            {
+                return null;
+            }
+
+            return OrtoDatasComparison(gISModel, building2D, ortoDatas, years);
+        }
+
+        public static OrtoDatasComparison OrtoDatasComparison(this GISModel gISModel, Building2D building2D, OrtoDatas ortoDatas, Core.Classes.Range<int> years)
+        {
+            if (ortoDatas == null)
             {
                 return null;
             }
 
             PolygonalFace2D polygonalFace2D = building2D.PolygonalFace2D;
             if (polygonalFace2D == null)
-            {
-                return null;
-            }
-
-            OrtoDatas ortoDatas = gISModelFile.OrtoDatas(building2D);
-            if (ortoDatas == null)
             {
                 return null;
             }
@@ -121,6 +132,60 @@ namespace DiGi.GIS.Emgu.CV
             ushort storeys = building2D.Storeys;
             double area = polygonalFace2D.GetArea();
             Point2D location = polygonalFace2D.GetInternalPoint();
+            string voivodeshipName = null;
+            string countyName = null;
+            string municipalityName = null;
+            string subdivisionName = null;
+            uint? subdivisionCalculatedOccupancy = null;
+            double? subdivisionCalculatedOccupancyArea = null;
+
+            if (gISModel != null)
+            {
+                List<AdministrativeAreal2D> administrativeAreal2Ds = gISModel.AdministrativeAreal2Ds<AdministrativeAreal2D>(building2D);
+                if(administrativeAreal2Ds != null)
+                {
+                    List<AdministrativeDivision> administrativeDivisions = administrativeAreal2Ds.OfType<AdministrativeDivision>().ToList();
+                    if (administrativeDivisions != null)
+                    {
+                        AdministrativeDivision administrativeDivision = null;
+
+                        administrativeDivision = administrativeDivisions.Find(x => x.AdministrativeDivisionType == AdministrativeDivisionType.voivodeship);
+                        if (administrativeDivision != null)
+                        {
+                            voivodeshipName = administrativeDivision.Name;
+                        }
+
+                        administrativeDivision = administrativeDivisions.Find(x => x.AdministrativeDivisionType == AdministrativeDivisionType.county);
+                        if (administrativeDivision != null)
+                        {
+                            countyName = administrativeDivision.Name;
+                        }
+
+                        administrativeDivision = administrativeDivisions.Find(x => x.AdministrativeDivisionType == AdministrativeDivisionType.municipality);
+                        if (administrativeDivision != null)
+                        {
+                            municipalityName = administrativeDivision.Name;
+                        }
+                    }
+
+                    AdministrativeSubdivision administrativeSubdivision = administrativeAreal2Ds.OfType<AdministrativeSubdivision>().FirstOrDefault();
+                    if(administrativeSubdivision != null)
+                    {
+                        subdivisionName = administrativeSubdivision.Name;
+
+                        if(gISModel.TryGetRelatedObjects<OccupancyCalculationResult, AdministrativeAreal2DOccupancyCalculationResultRelation>(administrativeSubdivision, out List<OccupancyCalculationResult> occupancyCalculationResults) && occupancyCalculationResults != null)
+                        {
+                            OccupancyCalculationResult occupancyCalculationResult = occupancyCalculationResults.FirstOrDefault();
+                            if (occupancyCalculationResult != null)
+                            {
+                                subdivisionCalculatedOccupancy = occupancyCalculationResult.Occupancy;
+                                subdivisionCalculatedOccupancyArea = occupancyCalculationResult.OccupancyArea;
+                            }
+                        }
+                        
+                    }
+                }
+            }
 
             OrtoDatasComparison result = new OrtoDatasComparison(
                 reference,
@@ -129,6 +194,12 @@ namespace DiGi.GIS.Emgu.CV
                 storeys,
                 area,
                 location,
+                voivodeshipName,
+                countyName,
+                municipalityName,
+                subdivisionName,
+                subdivisionCalculatedOccupancy,
+                subdivisionCalculatedOccupancyArea,
                 ortoDataComparisons);
 
             return result;

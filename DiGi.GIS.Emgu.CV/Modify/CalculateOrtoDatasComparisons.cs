@@ -3,96 +3,90 @@ using DiGi.GIS.Classes;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DiGi.GIS.Emgu.CV.Classes;
+using System.Linq;
+using DiGi.Core;
 
 namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Modify
     {
-        public static async Task<HashSet<GuidReference>> CalculateOrtoDatasComparisons(this GISModelFile gISModelFile, IEnumerable<Building2D> building2Ds, OrtoDatasComparisonOptions ortoDatasComparisonOptions, int count)
+        public static IEnumerable<GuidReference> CalculateOrtoDatasComparisons(this GISModel gISModel, IEnumerable<Building2D> building2Ds, string path, OrtoDatasComparisonOptions ortoDatasComparisonOptions)
         {
-            if (gISModelFile == null || building2Ds == null)
+            if (building2Ds == null || string.IsNullOrWhiteSpace(path))
             {
                 return null;
             }
 
-            GISModel gISModel = gISModelFile.Value;
-            if (gISModel == null)
-            {
-                return null;
-            }
-
-            string path_Model = gISModelFile.Path;
-            if (string.IsNullOrWhiteSpace(path_Model))
-            {
-                return null;
-            }
-
-            string fileName = System.IO.Path.GetFileNameWithoutExtension(path_Model);
-
-            string directory = System.IO.Path.GetDirectoryName(path_Model);
+            string directory = System.IO.Path.GetDirectoryName(path);
             if (!System.IO.Directory.Exists(directory))
             {
                 return null;
             }
 
-            HashSet<System.Guid> guids = new HashSet<System.Guid>();
-            foreach (Building2D building2D in building2Ds)
+            if(ortoDatasComparisonOptions == null)
             {
-                if (building2D == null)
-                {
-                    continue;
-                }
-
-                guids.Add(building2D.Guid);
+                ortoDatasComparisonOptions = new OrtoDatasComparisonOptions();
             }
 
-            List<Building2D> building2Ds_All = gISModel.GetObjects<Building2D>(x => guids.Contains(x.Guid));
-            if (building2Ds_All == null || building2Ds_All.Count == 0)
+            IEnumerable<Building2D> building2Ds_Temp = building2Ds;
+            if (!ortoDatasComparisonOptions.OverrideExisting)
+            {
+                Dictionary<GuidReference, OrtoDatasComparison> dictionary_Temp = Query.OrtoDatasComparisonDictionary(directory, building2Ds);
+                if (dictionary_Temp != null && dictionary_Temp.Count != 0)
+                {
+                    List<Building2D> building2Ds_Temp_Temp = new List<Building2D>(building2Ds_Temp);
+                    foreach (Building2D building2D in building2Ds_Temp)
+                    {
+                        GuidReference guidReference = building2D == null ? null : new GuidReference(building2D);
+                        if (dictionary_Temp.ContainsKey(guidReference))
+                        {
+                            building2Ds_Temp_Temp.Remove(building2D);
+                        }
+                    }
+
+                    building2Ds_Temp = building2Ds_Temp_Temp;
+                }
+            }
+
+            if (building2Ds_Temp == null || building2Ds_Temp.Count() == 0)
             {
                 return null;
             }
 
-            string path_OrtoDatasComparison = System.IO.Path.Combine(directory, string.Format("{0}.{1}", fileName, Constans.FileExtension.OrtoDatasComparisonFile));
+            Dictionary<GuidReference, OrtoDatas> dictionary_OrtoDatas = GIS.Query.OrtoDatasDictionary(directory, building2Ds_Temp);
+            if(dictionary_OrtoDatas == null || dictionary_OrtoDatas.Count == 0)
+            {
+                return null;
+            }
 
-            HashSet<GuidReference> result = new HashSet<GuidReference>();
-            using (OrtoDatasComparisonFile ortoDatasComparisonFile = new OrtoDatasComparisonFile(path_OrtoDatasComparison))
+            Dictionary<GuidReference, OrtoDatasComparison> dictionary_OrtoDatasComparison = new Dictionary<GuidReference, OrtoDatasComparison>();
+            foreach(GuidReference guidReference in dictionary_OrtoDatas.Keys)
+            {
+                dictionary_OrtoDatasComparison[guidReference] = null;
+            }
+
+            Parallel.For(0, dictionary_OrtoDatasComparison.Count, i => 
+            {
+                GuidReference guidReference = dictionary_OrtoDatasComparison.Keys.ElementAt(i);
+
+                OrtoDatas ortoDatas = dictionary_OrtoDatas[guidReference];
+
+                Building2D building2D = building2Ds_Temp.Find(x => new GuidReference(x) == guidReference);
+
+                dictionary_OrtoDatasComparison[guidReference] = Create.OrtoDatasComparison(gISModel, building2D, ortoDatas, ortoDatasComparisonOptions.Years);
+            });
+
+            using (OrtoDatasComparisonFile ortoDatasComparisonFile = new OrtoDatasComparisonFile(path))
             {
                 ortoDatasComparisonFile.Open();
-
-                string path_Relative = Core.IO.Query.RelativePath(directory, path_OrtoDatasComparison);
-
-                foreach (Building2D building2D in building2Ds_All)
+                foreach(OrtoDatasComparison ortoDatasComparison in dictionary_OrtoDatasComparison.Values)
                 {
-                    if (!ortoDatasComparisonOptions.OverrideExisting && gISModel.TryGetRelatedObject(building2D, out OrtoDatasComparisonResult ortoDatasComparisonResult) && ortoDatasComparisonResult != null)
-                    {
-                        continue;
-                    }
-
-                    HashSet<GuidReference> guidReferences = await GIS.Modify.CalculateOrtoDatas(gISModelFile, new Building2D[] { building2D }, ortoDatasComparisonOptions?.OrtoDatasOptions, ortoDatasComparisonOptions.OverrideExisting);
-
-                    UniqueReference uniqueReference = ortoDatasComparisonFile.AddValue(gISModelFile, building2D, ortoDatasComparisonOptions);
-                    if (uniqueReference == null)
-                    {
-                        continue;
-                    }
-
-                    result.Add(new GuidReference(building2D));
-
-                    ortoDatasComparisonResult = new OrtoDatasComparisonResult(new InstanceRelatedExternalReference(path_Relative, uniqueReference));
-
-                    gISModel.Update(building2D, ortoDatasComparisonResult);
+                    ortoDatasComparisonFile.AddValue(ortoDatasComparison);
                 }
-
                 ortoDatasComparisonFile.Save();
             }
 
-            if(result != null && result.Count != 0)
-            {
-                gISModelFile.Value = gISModel;
-                gISModelFile.Save();
-            }
-
-            return result;
+            return dictionary_OrtoDatasComparison.Keys;
         }
     }
 }

@@ -6,19 +6,31 @@ namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Modify
     {
-        public static UniqueReference AddValue(this OrtoDatasComparisonFile ortoDatasComparisonFile, GISModelFile gISModelFile, Building2D builidng2D, OrtoDatasComparisonOptions ortoDatasComparisonOptions = null)
+        public static UniqueReference AddValue(this OrtoDatasComparisonFile ortoDatasComparisonFile, Building2D builidng2D, GISModel gISModel, OrtoDatasComparisonOptions ortoDatasComparisonOptions = null)
         {
             if (ortoDatasComparisonFile == null || builidng2D == null)
             {
                 return null;
             }
 
-            if(ortoDatasComparisonOptions == null)
+            string path = ortoDatasComparisonFile.Path;
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return null;
+            }
+
+            string directory = System.IO.Path.GetDirectoryName(path);
+            if(!System.IO.Directory.Exists(directory))
+            {
+                return null;
+            }
+
+            if (ortoDatasComparisonOptions == null)
             {
                 ortoDatasComparisonOptions = new OrtoDatasComparisonOptions();
             }
 
-            OrtoDatasComparison ortoDatasComparison = Create.OrtoDatasComparison(gISModelFile, builidng2D, ortoDatasComparisonOptions.OrtoDatasOptions.Years);
+            OrtoDatasComparison ortoDatasComparison = Create.OrtoDatasComparison(gISModel, builidng2D, directory,ortoDatasComparisonOptions.Years);
             if(ortoDatasComparison == null)
             {
                 return null;

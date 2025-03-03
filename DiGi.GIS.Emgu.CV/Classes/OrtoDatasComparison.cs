@@ -1,6 +1,5 @@
 ﻿using DiGi.Core.Classes;
 using DiGi.Geometry.Planar.Classes;
-using DiGi.GIS.Classes;
 using DiGi.GIS.Enums;
 using System;
 using System.Collections.Generic;
@@ -29,6 +28,24 @@ namespace DiGi.GIS.Emgu.CV.Classes
         [JsonInclude, JsonPropertyName("Location")]
         private Point2D location;
 
+        [JsonInclude, JsonPropertyName("VoivodeshipName")]
+        private string voivodeshipName;
+
+        [JsonInclude, JsonPropertyName("CountyName")]
+        private string countyName;
+
+        [JsonInclude, JsonPropertyName("MunicipalityName")]
+        private string municipalityName;
+
+        [JsonInclude, JsonPropertyName("SubdivisionName")]
+        private string subdivisionName;
+
+        [JsonInclude, JsonPropertyName("SubdivisionCalculatedOccupancy")]
+        private uint? subdivisionCalculatedOccupancy;
+
+        [JsonInclude, JsonPropertyName("SubdivisionCalculatedOccupancyArea")]
+        private double? subdivisionCalculatedOccupancyArea;
+
         [JsonIgnore]
         private SortedDictionary<DateTime, OrtoDataComparison> sortedDictionary = new SortedDictionary<DateTime, OrtoDataComparison>();
 
@@ -39,6 +56,12 @@ namespace DiGi.GIS.Emgu.CV.Classes
             ushort storeys,
             double area,
             Point2D location,
+            string voivodeshipName,
+            string countyName,
+            string municipalityName,
+            string subdivisionName,
+            uint? subdivisionCalculatedOccupancy,
+            double? subdivisionCalculatedOccupancyArea,
             IEnumerable<OrtoDataComparison> ortoDataComparisons) 
         {
             this.reference = reference;
@@ -47,6 +70,12 @@ namespace DiGi.GIS.Emgu.CV.Classes
             this.storeys = storeys;
             this.area = area;
             this.location = location;
+            this.voivodeshipName = voivodeshipName;
+            this.countyName = countyName;
+            this.municipalityName = municipalityName;
+            this.subdivisionName = subdivisionName;
+            this.subdivisionCalculatedOccupancy = subdivisionCalculatedOccupancy;
+            this.subdivisionCalculatedOccupancyArea = subdivisionCalculatedOccupancyArea;
             OrtoDataComparisons = ortoDataComparisons;
         }
 
@@ -156,6 +185,60 @@ namespace DiGi.GIS.Emgu.CV.Classes
             }
 
             return new Range<int>(years);
+        }
+
+        [JsonIgnore]
+        public string VoivodeshipName
+        {
+            get
+            {
+                return voivodeshipName;
+            }
+        }
+
+        [JsonIgnore]
+        public string CountyName
+        {
+            get
+            {
+                return countyName;
+            }
+        }
+
+        [JsonIgnore]
+        public string MunicipalityName
+        {
+            get
+            {
+                return municipalityName;
+            }
+        }
+
+        [JsonIgnore]
+        public string SubdivisionName
+        {
+            get
+            {
+                return subdivisionName;
+            }
+        }
+
+        [JsonIgnore]
+        public uint? SubdivisionCalculatedOccupancy
+        {
+            get
+            {
+                return subdivisionCalculatedOccupancy;
+            }
+        }
+
+        [JsonIgnore]
+        public double? SubdivisionCalculatedOccupancyArea
+        {
+            get
+            {
+                return subdivisionCalculatedOccupancyArea;
+            }
         }
 
         public OrtoDataComparison GetOrtoDataComparison(DateTime dateTime)
