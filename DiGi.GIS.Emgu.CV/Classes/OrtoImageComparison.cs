@@ -9,8 +9,8 @@ namespace DiGi.GIS.Emgu.CV.Classes
         [JsonInclude, JsonPropertyName("AverageColorSimilarity")]
         private double averageColorSimilarity;
 
-        [JsonInclude, JsonPropertyName("ColorHistogramsFactor")]
-        private double colorHistogramsFactor;
+        [JsonInclude, JsonPropertyName("ColorDistributionShift")]
+        private double colorDistributionShift;
 
         [JsonInclude, JsonPropertyName("DateTime")]
         private DateTime dateTime;
@@ -33,26 +33,46 @@ namespace DiGi.GIS.Emgu.CV.Classes
         [JsonInclude, JsonPropertyName("StructuralSimilarityIndex_MatchTemplate")]
         private double structuralSimilarityIndex_MatchTemplate;
 
+        [JsonInclude, JsonPropertyName("MeanLaplacianFactor")]
+        private double meanLaplacianFactor;
+
+        [JsonInclude, JsonPropertyName("StandardDeviationLaplacianFactor")]
+        private double standardDeviationLaplacianFactor;
+
+        [JsonInclude, JsonPropertyName("OpticalFlowAverageMagnitude")]
+        private double opticalFlowAverageMagnitude;
+
+        [JsonInclude, JsonPropertyName("ORBFeatureMatchingFactor")]
+        private double oRBFeatureMatchingFactor;
+
         public OrtoImageComparison(
             DateTime dateTime, 
             int hammingDistace, 
-            double colorHistogramsFactor, 
+            double colorDistributionShift, 
             double grayHistogramsFactor, 
             double averageColorSimilarity,
             double histogramCorrelation,
             double shapeComparisonFactor,
             double structuralSimilarityIndex_AbsoluteDifference,
-            double structuralSimilarityIndex_MatchTemplate) 
+            double structuralSimilarityIndex_MatchTemplate,
+            double meanLaplacianFactor,
+            double standardDeviationLaplacianFactor,
+            double opticalFlowAverageMagnitude,
+            double oRBFeatureMatchingFactor) 
         {
             this.dateTime = dateTime;
             this.hammingDistace = hammingDistace;
-            this.colorHistogramsFactor = colorHistogramsFactor;
+            this.colorDistributionShift = colorDistributionShift;
             this.grayHistogramsFactor= grayHistogramsFactor;
             this.averageColorSimilarity = averageColorSimilarity;
             this.histogramCorrelation = histogramCorrelation;
             this.shapeComparisonFactor = shapeComparisonFactor;
             this.structuralSimilarityIndex_AbsoluteDifference = structuralSimilarityIndex_AbsoluteDifference;
             this.structuralSimilarityIndex_MatchTemplate = structuralSimilarityIndex_MatchTemplate;
+            this.meanLaplacianFactor = meanLaplacianFactor;
+            this.standardDeviationLaplacianFactor = standardDeviationLaplacianFactor;
+            this.opticalFlowAverageMagnitude = opticalFlowAverageMagnitude;
+            this.oRBFeatureMatchingFactor = oRBFeatureMatchingFactor;
         }
 
         public OrtoImageComparison(JsonObject jsonObject)
@@ -68,13 +88,17 @@ namespace DiGi.GIS.Emgu.CV.Classes
             {
                 dateTime = ortoImageComparison.dateTime;
                 hammingDistace = ortoImageComparison.hammingDistace;
-                colorHistogramsFactor = ortoImageComparison.colorHistogramsFactor;
+                colorDistributionShift = ortoImageComparison.colorDistributionShift;
                 grayHistogramsFactor = ortoImageComparison.grayHistogramsFactor;
                 averageColorSimilarity = ortoImageComparison.averageColorSimilarity;
                 histogramCorrelation = ortoImageComparison.histogramCorrelation;
                 shapeComparisonFactor = ortoImageComparison.shapeComparisonFactor;
                 structuralSimilarityIndex_AbsoluteDifference = ortoImageComparison.structuralSimilarityIndex_AbsoluteDifference;
                 structuralSimilarityIndex_MatchTemplate = ortoImageComparison.structuralSimilarityIndex_MatchTemplate;
+                meanLaplacianFactor = ortoImageComparison.meanLaplacianFactor;
+                standardDeviationLaplacianFactor = ortoImageComparison.standardDeviationLaplacianFactor;
+                opticalFlowAverageMagnitude = ortoImageComparison.opticalFlowAverageMagnitude;
+                oRBFeatureMatchingFactor = ortoImageComparison.oRBFeatureMatchingFactor;
             }
         }
 
@@ -88,11 +112,11 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double ColorHistogramsFactor
+        public double ColorDistributionShift
         {
             get
             {
-                return colorHistogramsFactor;
+                return colorDistributionShift;
             }
         }
 
@@ -156,6 +180,42 @@ namespace DiGi.GIS.Emgu.CV.Classes
             get
             {
                 return structuralSimilarityIndex_MatchTemplate;
+            }
+        }
+
+        [JsonIgnore]
+        public double MeanLaplacianFactor
+        {
+            get
+            {
+                return meanLaplacianFactor;
+            }
+        }
+
+        [JsonIgnore]
+        public double StandardDeviationLaplacianFactor
+        {
+            get
+            {
+                return standardDeviationLaplacianFactor;
+            }
+        }
+
+        [JsonIgnore]
+        public double OpticalFlowAverageMagnitude
+        {
+            get
+            {
+                return opticalFlowAverageMagnitude;
+            }
+        }
+
+        [JsonIgnore]
+        public double ORBFeatureMatchingFactor
+        {
+            get
+            {
+                return oRBFeatureMatchingFactor;
             }
         }
     }

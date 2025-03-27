@@ -104,7 +104,10 @@ namespace DiGi.GIS.Emgu.CV
             {
                 string reference = keyValuePair.Key;
 
-                result[dictionary[reference]] = ortoDatasComparisonDictionary[reference]; 
+                if(ortoDatasComparisonDictionary.TryGetValue(reference, out OrtoDatasComparison ortoDatasComparison))
+                {
+                    result[dictionary[reference]] = ortoDatasComparison;
+                }
             }
 
             return result;

@@ -96,24 +96,32 @@ namespace DiGi.GIS.Emgu.CV
                         Mat mat_2 = tuple_2.Item2[k];
 
                         int hammingDistace = DiGi.Emgu.CV.Query.HammingDistance(mat_1, mat_2);
-                        double colorHistogramsFactor = DiGi.Emgu.CV.Query.ColorHistogramFactor(mat_1, mat_2);
                         double grayHistogramsFactor = DiGi.Emgu.CV.Query.GrayHistogramFactor(mat_1, mat_2);
                         double averageColorSimilarity = DiGi.Emgu.CV.Query.AverageColorSimilarity(mat_1, mat_2);
                         double histogramCorrelation = DiGi.Emgu.CV.Query.HistogramCorrelation(mat_1, mat_2, false);
                         double shapeComparisonFactor = DiGi.Emgu.CV.Query.ShapeComparisonFactor(mat_1, mat_2);
                         double structuralSimilarityIndex_AbsoluteDifference = DiGi.Emgu.CV.Query.StructuralSimilarityIndex_AbsoluteDifference(mat_1, mat_2);
                         double structuralSimilarityIndex_MatchTemplate = DiGi.Emgu.CV.Query.StructuralSimilarityIndex_MatchTemplate(mat_1, mat_2);
+                        double colorDistributionShift = DiGi.Emgu.CV.Query.ColorDistributionShift(mat_1, mat_2);
+                        double opticalFlowAverageMagnitude = DiGi.Emgu.CV.Query.OpticalFlowAverageMagnitude(mat_1, mat_2);
+                        double oRBFeatureMatchingFactor = DiGi.Emgu.CV.Query.ORBFeatureMatchingFactor(mat_1, mat_2);
+
+                        DiGi.Emgu.CV.Query.LaplacianFactors(mat_1, mat_2, out double meanLaplacianFactor, out double standardDeviationLaplacianFactor);
 
                         OrtoImageComparison ortoImageComparison = new OrtoImageComparison(
                             tuple_2.Item1.DateTime,
                             hammingDistace,
-                            colorHistogramsFactor,
+                            colorDistributionShift,
                             grayHistogramsFactor,
                             averageColorSimilarity,
                             histogramCorrelation,
                             shapeComparisonFactor,
                             structuralSimilarityIndex_AbsoluteDifference,
-                            structuralSimilarityIndex_MatchTemplate);
+                            structuralSimilarityIndex_MatchTemplate,
+                            meanLaplacianFactor,
+                            standardDeviationLaplacianFactor,
+                            opticalFlowAverageMagnitude,
+                            oRBFeatureMatchingFactor);
 
                         ortoImageComparisons.Add(ortoImageComparison);
                     }
