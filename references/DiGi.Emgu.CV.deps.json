@@ -9,7 +9,8 @@
     ".NETStandard,Version=v2.0/": {
       "DiGi.Emgu.CV/1.0.0": {
         "dependencies": {
-          "Emgu.CV": "4.9.0.5494",
+          "Emgu.CV": "4.10.0.5680",
+          "Emgu.CV.runtime.windows.cuda": "4.4.0.4099",
           "NETStandard.Library": "2.0.3",
           "DiGi.Core": "1.0.0.0",
           "DiGi.Geometry": "1.0.0.0"
@@ -18,28 +19,64 @@
           "DiGi.Emgu.CV.dll": {}
         }
       },
-      "Emgu.CV/4.9.0.5494": {
+      "Emgu.CV/4.10.0.5680": {
         "dependencies": {
           "System.Drawing.Primitives": "4.3.0",
           "System.Runtime": "4.3.1",
           "System.Runtime.InteropServices.RuntimeInformation": "4.3.0",
-          "System.Text.Json": "8.0.1"
+          "System.Text.Json": "9.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/Emgu.CV.dll": {
-            "assemblyVersion": "4.9.0.5494",
-            "fileVersion": "4.9.0.5494"
+            "assemblyVersion": "4.10.0.5680",
+            "fileVersion": "4.10.0.5680"
           }
         }
       },
-      "Microsoft.Bcl.AsyncInterfaces/8.0.0": {
+      "Emgu.CV.runtime.windows.cuda/4.4.0.4099": {
+        "dependencies": {
+          "Emgu.CV": "4.10.0.5680",
+          "Emgu.runtime.windows.cuda.blas": "11.1.218",
+          "Emgu.runtime.windows.cuda.dnn": "8.0.1",
+          "Emgu.runtime.windows.cuda.dnn.adv": "8.0.1",
+          "Emgu.runtime.windows.cuda.dnn.cnn": "8.0.1",
+          "Emgu.runtime.windows.cuda.dnn.ops": "8.0.1",
+          "Emgu.runtime.windows.cuda.fft": "11.1.218",
+          "Emgu.runtime.windows.cuda.npp": "11.1.218"
+        }
+      },
+      "Emgu.runtime.windows.cuda.blas/11.1.218": {},
+      "Emgu.runtime.windows.cuda.dnn/8.0.1": {
+        "dependencies": {
+          "Emgu.runtime.windows.cuda.rt": "11.1.218"
+        }
+      },
+      "Emgu.runtime.windows.cuda.dnn.adv/8.0.1": {
+        "dependencies": {
+          "Emgu.runtime.windows.cuda.dnn": "8.0.1"
+        }
+      },
+      "Emgu.runtime.windows.cuda.dnn.cnn/8.0.1": {
+        "dependencies": {
+          "Emgu.runtime.windows.cuda.dnn": "8.0.1"
+        }
+      },
+      "Emgu.runtime.windows.cuda.dnn.ops/8.0.1": {
+        "dependencies": {
+          "Emgu.runtime.windows.cuda.dnn": "8.0.1"
+        }
+      },
+      "Emgu.runtime.windows.cuda.fft/11.1.218": {},
+      "Emgu.runtime.windows.cuda.npp/11.1.218": {},
+      "Emgu.runtime.windows.cuda.rt/11.1.218": {},
+      "Microsoft.Bcl.AsyncInterfaces/9.0.0": {
         "dependencies": {
           "System.Threading.Tasks.Extensions": "4.5.4"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
           }
         }
       },
@@ -90,6 +127,19 @@
           "System.Runtime": "4.3.1",
           "System.Text.Encoding": "4.3.0",
           "System.Threading.Tasks": "4.3.0"
+        }
+      },
+      "System.IO.Pipelines/9.0.0": {
+        "dependencies": {
+          "System.Buffers": "4.5.1",
+          "System.Memory": "4.5.5",
+          "System.Threading.Tasks.Extensions": "4.5.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.IO.Pipelines.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
+          }
         }
       },
       "System.Memory/4.5.5": {
@@ -208,7 +258,7 @@
           "System.Runtime": "4.3.1"
         }
       },
-      "System.Text.Encodings.Web/8.0.0": {
+      "System.Text.Encodings.Web/9.0.0": {
         "dependencies": {
           "System.Buffers": "4.5.1",
           "System.Memory": "4.5.5",
@@ -216,24 +266,25 @@
         },
         "runtime": {
           "lib/netstandard2.0/System.Text.Encodings.Web.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
           }
         }
       },
-      "System.Text.Json/8.0.1": {
+      "System.Text.Json/9.0.0": {
         "dependencies": {
-          "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
+          "Microsoft.Bcl.AsyncInterfaces": "9.0.0",
           "System.Buffers": "4.5.1",
+          "System.IO.Pipelines": "9.0.0",
           "System.Memory": "4.5.5",
           "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "System.Text.Encodings.Web": "8.0.0",
+          "System.Text.Encodings.Web": "9.0.0",
           "System.Threading.Tasks.Extensions": "4.5.4"
         },
         "runtime": {
           "lib/netstandard2.0/System.Text.Json.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.123.58001"
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
           }
         }
       },
@@ -299,19 +350,82 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Emgu.CV/4.9.0.5494": {
+    "Emgu.CV/4.10.0.5680": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-arnHdpnI14Ov98BmiWOsijAO3qvs2Z5+nBD2uavJI24CRTRSvkCXKZoMmhJVA48QdCdWO8HkO4wMqEezL4Bz/A==",
-      "path": "emgu.cv/4.9.0.5494",
-      "hashPath": "emgu.cv.4.9.0.5494.nupkg.sha512"
+      "sha512": "sha512-nMCgw4gwhH1Kj+MvzL4cb+Sfa8+HoYGIkjj/BHR0KRnGi4rDF63Me3JbqqbzZlca+1zZlC2taT4udlQ3YQgjsQ==",
+      "path": "emgu.cv/4.10.0.5680",
+      "hashPath": "emgu.cv.4.10.0.5680.nupkg.sha512"
     },
-    "Microsoft.Bcl.AsyncInterfaces/8.0.0": {
+    "Emgu.CV.runtime.windows.cuda/4.4.0.4099": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3WA9q9yVqJp222P3x1wYIGDAkpjAku0TMUaaQV22g6L67AI0LdOIrVS7Ht2vJfLHGSPVuqN94vIr15qn+HEkHw==",
-      "path": "microsoft.bcl.asyncinterfaces/8.0.0",
-      "hashPath": "microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512"
+      "sha512": "sha512-5LDnE7qcVPg6IiugkmEvsxEroHRN3VIyLmvm81KciVWhTnbOz66kg6pRSVT4BwaKFraE2RmM+4YdMwpp0iN9RQ==",
+      "path": "emgu.cv.runtime.windows.cuda/4.4.0.4099",
+      "hashPath": "emgu.cv.runtime.windows.cuda.4.4.0.4099.nupkg.sha512"
+    },
+    "Emgu.runtime.windows.cuda.blas/11.1.218": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4zQruo8yyvFZUQQRCpxW1/wnS2ugVXQOglg+3fCy88cUwidl0SeM1k7fO+Sd6H+7NI39wurVFpvS5xMn0Cunpg==",
+      "path": "emgu.runtime.windows.cuda.blas/11.1.218",
+      "hashPath": "emgu.runtime.windows.cuda.blas.11.1.218.nupkg.sha512"
+    },
+    "Emgu.runtime.windows.cuda.dnn/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HSdrc+peLEPvlg2odU+J66G2wZ+AkvSTky8UM9GXJVeiEdpe1n04v5+GM6qw2NHs8CSF5pCuRAfcs5zTRLUzpQ==",
+      "path": "emgu.runtime.windows.cuda.dnn/8.0.1",
+      "hashPath": "emgu.runtime.windows.cuda.dnn.8.0.1.nupkg.sha512"
+    },
+    "Emgu.runtime.windows.cuda.dnn.adv/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3922O+RzuLVYCwLajpWLuz+DxHJv9DlT1Hm3GUstZoYhrZikdgW3qWUVAmY9lpsFh4E2SRmtW4laRaIrmsktfQ==",
+      "path": "emgu.runtime.windows.cuda.dnn.adv/8.0.1",
+      "hashPath": "emgu.runtime.windows.cuda.dnn.adv.8.0.1.nupkg.sha512"
+    },
+    "Emgu.runtime.windows.cuda.dnn.cnn/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FmSUAr4LKLhqHXo/HdS4hXDrgYrLPDxmoKU3Lu3qYrvhMOkGKe3VkSVA3VwZPZWHN0Pe2MFqW0lxNz0GUk52EA==",
+      "path": "emgu.runtime.windows.cuda.dnn.cnn/8.0.1",
+      "hashPath": "emgu.runtime.windows.cuda.dnn.cnn.8.0.1.nupkg.sha512"
+    },
+    "Emgu.runtime.windows.cuda.dnn.ops/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lBR7wd+3ULEo5zxZepyQIH3IpAlStyBAi5Lz1fyrMFxG2Px2djEBgbQcCit6XcEbk4ZnTiB0WtxQc9uk8zKDWA==",
+      "path": "emgu.runtime.windows.cuda.dnn.ops/8.0.1",
+      "hashPath": "emgu.runtime.windows.cuda.dnn.ops.8.0.1.nupkg.sha512"
+    },
+    "Emgu.runtime.windows.cuda.fft/11.1.218": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IOH6JsQ5A9NoCGP/6wcLnfigNPIbunTxjeUKInXBsUsrv0hK7tUn36LSw0tZ0JWyqp3HgXvbQsZf42kt/vqdhg==",
+      "path": "emgu.runtime.windows.cuda.fft/11.1.218",
+      "hashPath": "emgu.runtime.windows.cuda.fft.11.1.218.nupkg.sha512"
+    },
+    "Emgu.runtime.windows.cuda.npp/11.1.218": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PNMht/ZnWYqOeE6QMp0sG9VZNcfomTYVdq/fX8S8zatEFKQQ5jJJEh0QO+nZ6YJ2yU7w2D8v6HvmN0OqUsBgiw==",
+      "path": "emgu.runtime.windows.cuda.npp/11.1.218",
+      "hashPath": "emgu.runtime.windows.cuda.npp.11.1.218.nupkg.sha512"
+    },
+    "Emgu.runtime.windows.cuda.rt/11.1.218": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-b+4R7UV1Aeju51rNJxmIffZ6IzewXUZVdzvISU9qJLU5/8rgzjc9rnBZHJBKAJhhIkV92ZL68mVZVCjwDNO9AA==",
+      "path": "emgu.runtime.windows.cuda.rt/11.1.218",
+      "hashPath": "emgu.runtime.windows.cuda.rt.11.1.218.nupkg.sha512"
+    },
+    "Microsoft.Bcl.AsyncInterfaces/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-owmu2Cr3IQ8yQiBleBHlGk8dSQ12oaF2e7TpzwJKEl4m84kkZJjEY1n33L67Y3zM5jPOjmmbdHjbfiL0RqcMRQ==",
+      "path": "microsoft.bcl.asyncinterfaces/9.0.0",
+      "hashPath": "microsoft.bcl.asyncinterfaces.9.0.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.1": {
       "type": "package",
@@ -368,6 +482,13 @@
       "sha512": "sha512-3qjaHvxQPDpSOYICjUoTsmoq5u6QJAFRUITgeT/4gqkF1bajbSmb1kwSxEA8AHlofqgcKJcM8udgieRNhaJ5Cg==",
       "path": "system.io/4.3.0",
       "hashPath": "system.io.4.3.0.nupkg.sha512"
+    },
+    "System.IO.Pipelines/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eA3cinogwaNB4jdjQHOP3Z3EuyiDII7MT35jgtnsA4vkn0LUrrSHsU0nzHTzFzmaFYeKV7MYyMxOocFzsBHpTw==",
+      "path": "system.io.pipelines/9.0.0",
+      "hashPath": "system.io.pipelines.9.0.0.nupkg.sha512"
     },
     "System.Memory/4.5.5": {
       "type": "package",
@@ -460,19 +581,19 @@
       "path": "system.text.encoding/4.3.0",
       "hashPath": "system.text.encoding.4.3.0.nupkg.sha512"
     },
-    "System.Text.Encodings.Web/8.0.0": {
+    "System.Text.Encodings.Web/9.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yev/k9GHAEGx2Rg3/tU6MQh4HGBXJs70y7j1LaM1i/ER9po+6nnQ6RRqTJn1E7Xu0fbIFK80Nh5EoODxrbxwBQ==",
-      "path": "system.text.encodings.web/8.0.0",
-      "hashPath": "system.text.encodings.web.8.0.0.nupkg.sha512"
+      "sha512": "sha512-e2hMgAErLbKyUUwt18qSBf9T5Y+SFAL3ZedM8fLupkVj8Rj2PZ9oxQ37XX2LF8fTO1wNIxvKpihD7Of7D/NxZw==",
+      "path": "system.text.encodings.web/9.0.0",
+      "hashPath": "system.text.encodings.web.9.0.0.nupkg.sha512"
     },
-    "System.Text.Json/8.0.1": {
+    "System.Text.Json/9.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7AWk2za1hSEJBppe/Lg+uDcam2TrDqwIKa9XcPssSwyjC2xa39EKEGul3CO5RWNF+hMuZG4zlBDrvhBdDTg4lg==",
-      "path": "system.text.json/8.0.1",
-      "hashPath": "system.text.json.8.0.1.nupkg.sha512"
+      "sha512": "sha512-js7+qAu/9mQvnhA4EfGMZNEzXtJCDxgkgj8ohuxq/Qxv+R56G+ljefhiJHOxTNiw54q8vmABCWUwkMulNdlZ4A==",
+      "path": "system.text.json/9.0.0",
+      "hashPath": "system.text.json.9.0.0.nupkg.sha512"
     },
     "System.Threading/4.3.0": {
       "type": "package",

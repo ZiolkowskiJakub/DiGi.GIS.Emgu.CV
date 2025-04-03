@@ -39,18 +39,6 @@ namespace DiGi.GIS.Emgu.CV
 
                     Dictionary<string, object> dictionary = new Dictionary<string, object>();
                     dictionary[nameof(ortoDatasComparison.Reference)] = ortoDatasComparison.Reference;
-                    dictionary[nameof(ortoDatasComparison.BuildingGeneralFunction)] = ortoDatasComparison.BuildingGeneralFunction;
-                    dictionary[nameof(ortoDatasComparison.BuildingPhase)] = ortoDatasComparison.BuildingPhase;
-                    dictionary[nameof(ortoDatasComparison.Area)] = ortoDatasComparison.Area;
-                    dictionary[nameof(ortoDatasComparison.Storeys)] = ortoDatasComparison.Storeys;
-                    dictionary[string.Format("{0} {1}", nameof(ortoDatasComparison.Location), nameof(ortoDatasComparison.Location.X))] = ortoDatasComparison.Location.X;
-                    dictionary[string.Format("{0} {1}", nameof(ortoDatasComparison.Location), nameof(ortoDatasComparison.Location.Y))] = ortoDatasComparison.Location.Y;
-                    dictionary[nameof(ortoDatasComparison.VoivodeshipName)] = ortoDatasComparison.VoivodeshipName;
-                    dictionary[nameof(ortoDatasComparison.CountyName)] = ortoDatasComparison.CountyName;
-                    dictionary[nameof(ortoDatasComparison.MunicipalityName)] = ortoDatasComparison.MunicipalityName;
-                    dictionary[nameof(ortoDatasComparison.SubdivisionName)] = ortoDatasComparison.SubdivisionName;
-                    dictionary[nameof(ortoDatasComparison.SubdivisionCalculatedOccupancy)] = ortoDatasComparison.SubdivisionCalculatedOccupancy;
-                    dictionary[nameof(ortoDatasComparison.SubdivisionCalculatedOccupancyArea)] = ortoDatasComparison.SubdivisionCalculatedOccupancyArea;
                     dictionary[nameof(dateTime_1.Year)] = i;
 
                     int? yearBuilt = null;

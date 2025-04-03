@@ -65,7 +65,7 @@ namespace DiGi.GIS.Emgu.CV
                 dictionary_OrtoDatasComparison[guidReference] = null;
             }
 
-            Parallel.For(0, dictionary_OrtoDatasComparison.Count, i => 
+            Parallel.For(0, dictionary_OrtoDatasComparison.Count, GIS.Query.DefaultParallelOptions(), i => 
             {
                 GuidReference guidReference = dictionary_OrtoDatasComparison.Keys.ElementAt(i);
 
@@ -73,7 +73,7 @@ namespace DiGi.GIS.Emgu.CV
 
                 Building2D building2D = building2Ds_Temp.Find(x => new GuidReference(x) == guidReference);
 
-                dictionary_OrtoDatasComparison[guidReference] = Create.OrtoDatasComparison(gISModel, building2D, ortoDatas, ortoDatasComparisonOptions.Years);
+                dictionary_OrtoDatasComparison[guidReference] = Create.OrtoDatasComparison(building2D, ortoDatas, ortoDatasComparisonOptions.Years);
             });
 
             using (OrtoDatasComparisonFile ortoDatasComparisonFile = new OrtoDatasComparisonFile(path))

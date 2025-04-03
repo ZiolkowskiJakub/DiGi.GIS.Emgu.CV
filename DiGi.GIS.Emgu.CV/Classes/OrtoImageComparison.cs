@@ -7,58 +7,58 @@ namespace DiGi.GIS.Emgu.CV.Classes
     public class OrtoImageComparison : Core.Classes.SerializableObject, Interfaces.IGISObject
     {
         [JsonInclude, JsonPropertyName("AverageColorSimilarity")]
-        private double averageColorSimilarity;
+        private float averageColorSimilarity;
 
         [JsonInclude, JsonPropertyName("ColorDistributionShift")]
-        private double colorDistributionShift;
+        private float colorDistributionShift;
 
         [JsonInclude, JsonPropertyName("DateTime")]
         private DateTime dateTime;
 
         [JsonInclude, JsonPropertyName("GrayHistogramsFactor")]
-        private double grayHistogramsFactor;
+        private float grayHistogramsFactor;
 
         [JsonInclude, JsonPropertyName("HammingDistance")]
         private int hammingDistace;
         
         [JsonInclude, JsonPropertyName("HistogramCorrelation")]
-        private double histogramCorrelation;
+        private float histogramCorrelation;
 
         [JsonInclude, JsonPropertyName("ShapeComparisonFactor")]
-        private double shapeComparisonFactor;
+        private float shapeComparisonFactor;
 
         [JsonInclude, JsonPropertyName("StructuralSimilarityIndex_AbsoluteDifference")]
-        private double structuralSimilarityIndex_AbsoluteDifference;
+        private float structuralSimilarityIndex_AbsoluteDifference;
 
         [JsonInclude, JsonPropertyName("StructuralSimilarityIndex_MatchTemplate")]
-        private double structuralSimilarityIndex_MatchTemplate;
+        private float structuralSimilarityIndex_MatchTemplate;
 
         [JsonInclude, JsonPropertyName("MeanLaplacianFactor")]
-        private double meanLaplacianFactor;
+        private float meanLaplacianFactor;
 
         [JsonInclude, JsonPropertyName("StandardDeviationLaplacianFactor")]
-        private double standardDeviationLaplacianFactor;
+        private float standardDeviationLaplacianFactor;
 
         [JsonInclude, JsonPropertyName("OpticalFlowAverageMagnitude")]
-        private double opticalFlowAverageMagnitude;
+        private float opticalFlowAverageMagnitude;
 
         [JsonInclude, JsonPropertyName("ORBFeatureMatchingFactor")]
-        private double oRBFeatureMatchingFactor;
+        private float oRBFeatureMatchingFactor;
 
         public OrtoImageComparison(
             DateTime dateTime, 
-            int hammingDistace, 
-            double colorDistributionShift, 
-            double grayHistogramsFactor, 
-            double averageColorSimilarity,
-            double histogramCorrelation,
-            double shapeComparisonFactor,
-            double structuralSimilarityIndex_AbsoluteDifference,
-            double structuralSimilarityIndex_MatchTemplate,
-            double meanLaplacianFactor,
-            double standardDeviationLaplacianFactor,
-            double opticalFlowAverageMagnitude,
-            double oRBFeatureMatchingFactor) 
+            int hammingDistace,
+            float colorDistributionShift,
+            float grayHistogramsFactor,
+            float averageColorSimilarity,
+            float histogramCorrelation,
+            float shapeComparisonFactor,
+            float structuralSimilarityIndex_AbsoluteDifference,
+            float structuralSimilarityIndex_MatchTemplate,
+            float meanLaplacianFactor,
+            float standardDeviationLaplacianFactor,
+            float opticalFlowAverageMagnitude,
+            float oRBFeatureMatchingFactor) 
         {
             this.dateTime = dateTime;
             this.hammingDistace = hammingDistace;
@@ -103,7 +103,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double AverageColorSimilarity
+        public float AverageColorSimilarity
         {
             get
             {
@@ -112,7 +112,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double ColorDistributionShift
+        public float ColorDistributionShift
         {
             get
             {
@@ -130,7 +130,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double GrayHistogramsFactor
+        public float GrayHistogramsFactor
         {
             get
             {
@@ -148,7 +148,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
         
         [JsonIgnore]
-        public double HistogramCorrelation
+        public float HistogramCorrelation
         {
             get
             {
@@ -157,7 +157,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double ShapeComparisonFactor
+        public float ShapeComparisonFactor
         {
             get
             {
@@ -166,7 +166,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double StructuralSimilarityIndex_AbsoluteDifference
+        public float StructuralSimilarityIndex_AbsoluteDifference
         {
             get
             {
@@ -175,7 +175,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double StructuralSimilarityIndex_MatchTemplate
+        public float StructuralSimilarityIndex_MatchTemplate
         {
             get
             {
@@ -184,7 +184,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double MeanLaplacianFactor
+        public float MeanLaplacianFactor
         {
             get
             {
@@ -193,7 +193,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double StandardDeviationLaplacianFactor
+        public float StandardDeviationLaplacianFactor
         {
             get
             {
@@ -202,7 +202,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double OpticalFlowAverageMagnitude
+        public float OpticalFlowAverageMagnitude
         {
             get
             {
@@ -211,7 +211,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public double ORBFeatureMatchingFactor
+        public float ORBFeatureMatchingFactor
         {
             get
             {

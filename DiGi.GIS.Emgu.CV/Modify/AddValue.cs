@@ -6,7 +6,7 @@ namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Modify
     {
-        public static UniqueReference AddValue(this OrtoDatasComparisonFile ortoDatasComparisonFile, Building2D builidng2D, GISModel gISModel, OrtoDatasComparisonOptions ortoDatasComparisonOptions = null)
+        public static UniqueReference AddValue(this OrtoDatasComparisonFile ortoDatasComparisonFile, Building2D builidng2D, OrtoDatasComparisonOptions ortoDatasComparisonOptions = null)
         {
             if (ortoDatasComparisonFile == null || builidng2D == null)
             {
@@ -30,7 +30,7 @@ namespace DiGi.GIS.Emgu.CV
                 ortoDatasComparisonOptions = new OrtoDatasComparisonOptions();
             }
 
-            OrtoDatasComparison ortoDatasComparison = Create.OrtoDatasComparison(gISModel, builidng2D, directory,ortoDatasComparisonOptions.Years);
+            OrtoDatasComparison ortoDatasComparison = Create.OrtoDatasComparison(builidng2D, directory,ortoDatasComparisonOptions.Years);
             if(ortoDatasComparison == null)
             {
                 return null;

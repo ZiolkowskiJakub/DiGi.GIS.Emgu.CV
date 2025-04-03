@@ -10,16 +10,16 @@ namespace DiGi.GIS.Emgu.CV
     {
         public static Dictionary<string, OrtoDatasComparison> OrtoDatasComparisonDictionary(string directory, IEnumerable<string> references)
         {
-            if(string.IsNullOrWhiteSpace(directory) || !System.IO.Directory.Exists(directory) || references == null)
+            if (string.IsNullOrWhiteSpace(directory) || !System.IO.Directory.Exists(directory) || references == null)
             {
                 return null;
             }
 
             HashSet<UniqueReference> uniqueReferences = new HashSet<UniqueReference>();
-            foreach(string reference in references)
+            foreach (string reference in references)
             {
                 UniqueReference uniqueReference = OrtoDatasComparisonFile.GetUniqueReference(reference);
-                if(uniqueReference == null)
+                if (uniqueReference == null)
                 {
                     continue;
                 }
@@ -28,29 +28,29 @@ namespace DiGi.GIS.Emgu.CV
             }
 
             Dictionary<string, OrtoDatasComparison> result = new Dictionary<string, OrtoDatasComparison>();
-            
+
             if (uniqueReferences.Count == 0)
             {
                 return result;
             }
 
             string[] paths = System.IO.Directory.GetFiles(directory, string.Format("*.{0}", Constans.FileExtension.OrtoDatasComparisonFile));
-            if(paths == null || paths.Length == 0)
+            if (paths == null || paths.Length == 0)
             {
                 return result;
             }
 
-            foreach(string path in paths)
+            foreach (string path in paths)
             {
                 using (OrtoDatasComparisonFile ortoDatasComparisonFile = new OrtoDatasComparisonFile(path))
                 {
                     List<OrtoDatasComparison> ortoDatasComparisonList = ortoDatasComparisonFile.GetValues(uniqueReferences)?.ToList();
-                    if(ortoDatasComparisonList == null || ortoDatasComparisonList.Count == 0)
+                    if (ortoDatasComparisonList == null || ortoDatasComparisonList.Count == 0)
                     {
                         continue;
                     }
 
-                    for (int i = 0; i < ortoDatasComparisonList.Count; i++)
+                    for (int i = ortoDatasComparisonList.Count - 1; i >= 0; i--)
                     {
                         if (ortoDatasComparisonList[i] == null)
                         {
@@ -62,7 +62,7 @@ namespace DiGi.GIS.Emgu.CV
                         result[uniqueReference.ToString()] = ortoDatasComparisonList[i];
                         uniqueReferences.Remove(uniqueReference);
 
-                        if(uniqueReferences.Count == 0)
+                        if (uniqueReferences.Count == 0)
                         {
                             return result;
                         }

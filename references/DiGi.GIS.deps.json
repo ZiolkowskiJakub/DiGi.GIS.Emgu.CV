@@ -13,6 +13,7 @@
           "NETStandard.Library": "2.0.3",
           "ProjNET4GeoAPI": "1.4.1",
           "System.Text.Json": "9.0.0",
+          "DiGi.BDL": "1.0.0.0",
           "DiGi.BDOT10k": "1.0.0.0",
           "DiGi.Core": "1.0.0.0",
           "DiGi.Core.IO": "1.0.0.0",
@@ -170,6 +171,14 @@
           "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll": {
             "assemblyVersion": "4.2.0.1",
             "fileVersion": "4.6.28619.1"
+          }
+        }
+      },
+      "DiGi.BDL/1.0.0.0": {
+        "runtime": {
+          "DiGi.BDL.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -357,6 +366,11 @@
       "sha512": "sha512-zteT+G8xuGu6mS+mzDzYXbzS7rd3K6Fjb9RiZlYlJPam2/hU7JCBZBVEcywNuR+oZ1ncTvc/cq0faRr3P01OVg==",
       "path": "system.threading.tasks.extensions/4.5.4",
       "hashPath": "system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+    },
+    "DiGi.BDL/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     },
     "DiGi.BDOT10k/1.0.0.0": {
       "type": "reference",
