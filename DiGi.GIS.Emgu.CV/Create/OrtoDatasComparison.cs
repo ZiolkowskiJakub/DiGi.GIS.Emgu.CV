@@ -6,6 +6,7 @@ using Emgu.CV;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace DiGi.GIS.Emgu.CV
 {
@@ -89,7 +90,7 @@ namespace DiGi.GIS.Emgu.CV
                 for (int k = 0; k < names.Length; k++)
                 {
                     List<OrtoImageComparison> ortoImageComparisons = new List<OrtoImageComparison>();
-                    for (int j = i + 1; j < tuples.Count - 1; j++)
+                    for (int j = i + 1; j < tuples.Count; j++)
                     {
                         Tuple<OrtoData, Mat[]> tuple_2 = tuples[j];
 
@@ -134,7 +135,7 @@ namespace DiGi.GIS.Emgu.CV
                 OrtoDataComparison ortoDataComparison = new OrtoDataComparison(tuple_1.Item1.DateTime, ortoImageComparisonGroups);
                 ortoDataComparisons.Add(ortoDataComparison);
             }
-            ;//);
+            //);
 
             for(int i =0; i < tuples.Count; i++)
             {

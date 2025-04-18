@@ -59,7 +59,14 @@ namespace DiGi.GIS.Emgu.CV
 
                         UniqueReference uniqueReference = uniqueReferences.ElementAt(i);
 
-                        result[uniqueReference.ToString()] = ortoDatasComparisonList[i];
+                        string reference = uniqueReference?.UniqueId;
+
+                        if (string.IsNullOrWhiteSpace(reference))
+                        {
+                            continue;
+                        }
+
+                        result[reference] = ortoDatasComparisonList[i];
                         uniqueReferences.Remove(uniqueReference);
 
                         if (uniqueReferences.Count == 0)

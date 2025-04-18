@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Emgu.CV" Version="4.10.0.5680" />
+    <PackageReference Include="Emgu.CV.runtime.windows" Version="4.10.0.5680" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,31 +18,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="DiGi.Core">
-      <HintPath>..\references\DiGi.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DiGi.Core.IO">
-      <HintPath>..\references\DiGi.Core.IO.dll</HintPath>
-    </Reference>
-    <Reference Include="DiGi.Core.Parameter">
-      <HintPath>..\references\DiGi.Core.Parameter.dll</HintPath>
-    </Reference>
-    <Reference Include="DiGi.Core.Relation">
-      <HintPath>..\references\DiGi.Core.Relation.dll</HintPath>
-    </Reference>
-    <Reference Include="DiGi.Emgu.CV">
-      <HintPath>..\references\DiGi.Emgu.CV.dll</HintPath>
-    </Reference>
-    <Reference Include="DiGi.Geometry">
-      <HintPath>..\references\DiGi.Geometry.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Classes\OrtoImageComparisonGroup.cs" />
     <None Include="Classes\OrtoDatasComparison.cs" />
     <None Include="Classes\OrtoImageComparison.cs" />
     <None Include="Classes\OrtoDataComparison.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DiGi.Core">
+      <HintPath>..\..\DiGi.Core\bin\DiGi.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DiGi.Core.IO">
+      <HintPath>..\..\DiGi.Core\bin\DiGi.Core.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="DiGi.Emgu.CV">
+      <HintPath>..\..\DiGi.Emgu.CV\bin\DiGi.Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="DiGi.Geometry">
+      <HintPath>..\..\DiGi.Geometry\bin\DiGi.Geometry.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

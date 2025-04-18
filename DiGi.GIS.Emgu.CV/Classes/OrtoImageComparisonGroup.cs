@@ -49,7 +49,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         {
             get
             {
-                return sortedDictionary.Values;
+                return sortedDictionary?.Values;
             }
 
             private set
