@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace DiGi.GIS.Emgu.CV.Classes
 {
-    public class OrtoDatasComparisonOptions : ExtractOptions
+    public class OrtoDatasComparisonOptions : DirectoryNamesOptions
     {
         /// <summary>
         /// Override existing values

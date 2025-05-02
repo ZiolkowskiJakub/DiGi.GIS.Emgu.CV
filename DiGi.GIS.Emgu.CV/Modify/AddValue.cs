@@ -30,7 +30,7 @@ namespace DiGi.GIS.Emgu.CV
                 ortoDatasComparisonOptions = new OrtoDatasComparisonOptions();
             }
 
-            OrtoDatasComparison ortoDatasComparison = Create.OrtoDatasComparison(builidng2D, directory,ortoDatasComparisonOptions.Years);
+            OrtoDatasComparison ortoDatasComparison = Create.OrtoDatasComparison(builidng2D, directory, ortoDatasComparisonOptions.Years);
             if(ortoDatasComparison == null)
             {
                 return null;

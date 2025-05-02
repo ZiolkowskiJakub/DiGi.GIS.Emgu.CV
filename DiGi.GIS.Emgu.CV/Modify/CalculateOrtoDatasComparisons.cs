@@ -28,6 +28,16 @@ namespace DiGi.GIS.Emgu.CV
                 ortoDatasComparisonOptions = new OrtoDatasComparisonOptions();
             }
 
+            directory = ortoDatasComparisonOptions.Directory(directory);
+            if (!System.IO.Directory.Exists(directory))
+            {
+                System.IO.DirectoryInfo directoryInfo = System.IO.Directory.CreateDirectory(directory);
+                if (directoryInfo == null)
+                {
+                    return null;
+                }
+            }
+
             IEnumerable<Building2D> building2Ds_Temp = building2Ds;
             if (!ortoDatasComparisonOptions.OverrideExisting)
             {
