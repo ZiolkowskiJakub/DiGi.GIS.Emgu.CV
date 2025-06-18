@@ -4,7 +4,6 @@ using DiGi.GIS.Emgu.CV.Classes;
 using System.Collections.Generic;
 using System;
 using DiGi.GIS.Classes;
-using DiGi.GIS.Interfaces;
 
 namespace DiGi.GIS.Emgu.CV
 {
