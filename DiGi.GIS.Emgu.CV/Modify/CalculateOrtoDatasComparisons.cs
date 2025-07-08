@@ -75,7 +75,7 @@ namespace DiGi.GIS.Emgu.CV
                 dictionary_OrtoDatasComparison[guidReference] = null;
             }
 
-            Parallel.For(0, dictionary_OrtoDatasComparison.Count, GIS.Query.DefaultParallelOptions(), i => 
+            Parallel.For(0, dictionary_OrtoDatasComparison.Count, Core.Create.ParallelOptions(), i => 
             {
                 GuidReference guidReference = dictionary_OrtoDatasComparison.Keys.ElementAt(i);
 
