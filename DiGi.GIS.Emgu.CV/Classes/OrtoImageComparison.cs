@@ -7,43 +7,43 @@ namespace DiGi.GIS.Emgu.CV.Classes
     public class OrtoImageComparison : Core.Classes.SerializableObject, Interfaces.IGISObject
     {
         [JsonInclude, JsonPropertyName("AverageColorSimilarity")]
-        private float averageColorSimilarity;
+        private readonly float averageColorSimilarity;
 
         [JsonInclude, JsonPropertyName("ColorDistributionShift")]
-        private float colorDistributionShift;
+        private readonly float colorDistributionShift;
 
         [JsonInclude, JsonPropertyName("DateTime")]
-        private DateTime dateTime;
+        private readonly DateTime dateTime;
 
         [JsonInclude, JsonPropertyName("GrayHistogramsFactor")]
-        private float grayHistogramsFactor;
+        private readonly float grayHistogramsFactor;
 
         [JsonInclude, JsonPropertyName("HammingDistance")]
-        private int hammingDistace;
+        private readonly int hammingDistace;
         
         [JsonInclude, JsonPropertyName("HistogramCorrelation")]
-        private float histogramCorrelation;
+        private readonly float histogramCorrelation;
 
         [JsonInclude, JsonPropertyName("ShapeComparisonFactor")]
-        private float shapeComparisonFactor;
+        private readonly float shapeComparisonFactor;
 
         [JsonInclude, JsonPropertyName("StructuralSimilarityIndex_AbsoluteDifference")]
-        private float structuralSimilarityIndex_AbsoluteDifference;
+        private readonly float structuralSimilarityIndex_AbsoluteDifference;
 
         [JsonInclude, JsonPropertyName("StructuralSimilarityIndex_MatchTemplate")]
-        private float structuralSimilarityIndex_MatchTemplate;
+        private readonly float structuralSimilarityIndex_MatchTemplate;
 
         [JsonInclude, JsonPropertyName("MeanLaplacianFactor")]
-        private float meanLaplacianFactor;
+        private readonly float meanLaplacianFactor;
 
         [JsonInclude, JsonPropertyName("StandardDeviationLaplacianFactor")]
-        private float standardDeviationLaplacianFactor;
+        private readonly float standardDeviationLaplacianFactor;
 
         [JsonInclude, JsonPropertyName("OpticalFlowAverageMagnitude")]
-        private float opticalFlowAverageMagnitude;
+        private readonly float opticalFlowAverageMagnitude;
 
         [JsonInclude, JsonPropertyName("ORBFeatureMatchingFactor")]
-        private float oRBFeatureMatchingFactor;
+        private readonly float oRBFeatureMatchingFactor;
 
         public OrtoImageComparison(
             DateTime dateTime, 

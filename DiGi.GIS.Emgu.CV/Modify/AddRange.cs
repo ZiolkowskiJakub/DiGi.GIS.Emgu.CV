@@ -9,17 +9,17 @@ namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Modify
     {
-        public static bool AddRange(this Table table, IEnumerable<OrtoDatasComparison> ortoDatasComparisons, IEnumerable<YearBuiltData> yearBuiltDatas = null)
+        public static bool AddRange(this Table? table, IEnumerable<OrtoDatasComparison>? ortoDatasComparisons, IEnumerable<YearBuiltData>? yearBuiltDatas = null)
         {
             if (ortoDatasComparisons == null || table == null)
             {
                 return false;
             }
 
-            HashSet<int> years = new HashSet<int>();
+            HashSet<int> years = [];
             foreach (OrtoDatasComparison ortoDatasComparison in ortoDatasComparisons)
             {
-                Range<int> range_Years_Temp = ortoDatasComparison?.GetYears();
+                Range<int>? range_Years_Temp = ortoDatasComparison?.GetYears();
                 if (range_Years_Temp == null)
                 {
                     continue;
@@ -29,17 +29,19 @@ namespace DiGi.GIS.Emgu.CV
                 years.Add(range_Years_Temp.Max);
             }
 
-            Range<int> range_Years = new Range<int>(years);
+            Range<int> range_Years = new(years);
 
             foreach (OrtoDatasComparison ortoDatasComparison in ortoDatasComparisons)
             {
                 for (int i = range_Years.Min; i <= range_Years.Max; i++)
                 {
-                    DateTime dateTime_1 = new DateTime(i, 1, 1);
+                    DateTime dateTime_1 = new(i, 1, 1);
 
-                    Dictionary<string, object> dictionary = new Dictionary<string, object>();
-                    dictionary[nameof(ortoDatasComparison.Reference)] = ortoDatasComparison.Reference;
-                    dictionary[nameof(dateTime_1.Year)] = i;
+                    Dictionary<string, object?> dictionary = new()
+                    {
+                        [nameof(ortoDatasComparison.Reference)] = ortoDatasComparison.Reference,
+                        [nameof(dateTime_1.Year)] = i
+                    };
 
                     int? yearBuilt = null;
                     if(yearBuiltDatas != null)
@@ -51,28 +53,33 @@ namespace DiGi.GIS.Emgu.CV
                                 continue;
                             }
 
-                            yearBuilt = yearBuiltData.GetUserYearBuilt()?.Year;
+                            yearBuilt = yearBuiltData?.GetUserYearBuilt()?.Year;
                             break;
                         }
                     }
 
                     dictionary["YearBuilt"] = yearBuilt;
 
-                    OrtoDataComparison ortoDataComparison = ortoDatasComparison.GetOrtoDataComparison(dateTime_1);
+                    OrtoDataComparison? ortoDataComparison = ortoDatasComparison.GetOrtoDataComparison(dateTime_1);
                     if (ortoDataComparison == null)
                     {
                         continue;
                     }
 
-                    foreach (OrtoImageComparisonGroup ortoImageComparisonGroup in ortoDataComparison.OrtoImageComparisonGroups)
+                    if(ortoDataComparison.OrtoImageComparisonGroups is not IEnumerable<OrtoImageComparisonGroup> ortoImageComparisonGroups)
                     {
-                        string name = ortoImageComparisonGroup.Name;
+                        continue;
+                    }
+
+                    foreach (OrtoImageComparisonGroup ortoImageComparisonGroup in ortoImageComparisonGroups)
+                    {
+                        string? name = ortoImageComparisonGroup.Name;
 
                         for (int j = range_Years.Min; j <= range_Years.Max; j++)
                         {
-                            DateTime dateTime_2 = new DateTime(j, 1, 1);
+                            DateTime dateTime_2 = new (j, 1, 1);
 
-                            OrtoImageComparison ortoImageComparison = ortoImageComparisonGroup.GetOrtoImageComparison(dateTime_2);
+                            OrtoImageComparison? ortoImageComparison = ortoImageComparisonGroup.GetOrtoImageComparison(dateTime_2);
                             if (ortoImageComparison == null)
                             {
                                 continue;

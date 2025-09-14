@@ -8,24 +8,24 @@ namespace DiGi.GIS.Emgu.CV.Classes
     public class OrtoImageComparisonGroup : Core.Classes.SerializableObject, Interfaces.IGISObject
     {
         [JsonInclude, JsonPropertyName("Name")]
-        private string name;
+        private readonly string? name;
 
         [JsonIgnore]
-        private SortedDictionary<DateTime, OrtoImageComparison> sortedDictionary = new SortedDictionary<DateTime, OrtoImageComparison>();
+        private readonly SortedDictionary<DateTime, OrtoImageComparison> sortedDictionary = [];
 
-        public OrtoImageComparisonGroup(string name, IEnumerable<OrtoImageComparison> ortoImageComparisons)
+        public OrtoImageComparisonGroup(string? name, IEnumerable<OrtoImageComparison>? ortoImageComparisons)
         {
             this.name = name;
-            OrtoImageComparisons = ortoImageComparisons;
+            OrtoImageComparisons = ortoImageComparisons ?? [];
         }
 
-        public OrtoImageComparisonGroup(JsonObject jsonObject)
+        public OrtoImageComparisonGroup(JsonObject? jsonObject)
             :base(jsonObject)
         {
 
         }
 
-        public OrtoImageComparisonGroup(OrtoImageComparisonGroup ortoImageComparisonGroup)
+        public OrtoImageComparisonGroup(OrtoImageComparisonGroup? ortoImageComparisonGroup)
             : base(ortoImageComparisonGroup)
         {
             if(ortoImageComparisonGroup != null)
@@ -36,7 +36,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public string Name
+        public string? Name
         {
             get
             {
@@ -45,7 +45,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonInclude, JsonPropertyName("OrtoImageComparisons")]
-        public IEnumerable<OrtoImageComparison> OrtoImageComparisons
+        public IEnumerable<OrtoImageComparison>? OrtoImageComparisons
         {
             get
             {
@@ -70,9 +70,9 @@ namespace DiGi.GIS.Emgu.CV.Classes
             }
         }
 
-        public OrtoImageComparison GetOrtoImageComparison(DateTime dateTime)
+        public OrtoImageComparison? GetOrtoImageComparison(DateTime dateTime)
         {
-            if (!Core.Query.TryGetLowerValue(sortedDictionary, dateTime, out OrtoImageComparison result))
+            if (!Core.Query.TryGetLowerValue(sortedDictionary, dateTime, out OrtoImageComparison? result))
             {
                 return null;
             }

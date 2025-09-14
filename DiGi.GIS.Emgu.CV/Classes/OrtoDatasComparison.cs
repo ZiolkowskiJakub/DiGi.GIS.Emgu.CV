@@ -9,33 +9,33 @@ namespace DiGi.GIS.Emgu.CV.Classes
     public class OrtoDatasComparison : GuidObject, Interfaces.IGISObject
     {
         [JsonInclude, JsonPropertyName("Reference")]
-        private string reference;
+        private readonly string? reference;
 
         [JsonIgnore]
-        private SortedDictionary<DateTime, OrtoDataComparison> sortedDictionary = new SortedDictionary<DateTime, OrtoDataComparison>();
+        private readonly SortedDictionary<DateTime, OrtoDataComparison> sortedDictionary = [];
 
         public OrtoDatasComparison(
-            string reference, 
-            IEnumerable<OrtoDataComparison> ortoDataComparisons) 
+            string? reference, 
+            IEnumerable<OrtoDataComparison>? ortoDataComparisons) 
         {
             this.reference = reference;
-            OrtoDataComparisons = ortoDataComparisons;
+            OrtoDataComparisons = ortoDataComparisons ?? [];
         }
 
-        public OrtoDatasComparison(JsonObject jsonObject)
+        public OrtoDatasComparison(JsonObject? jsonObject)
             :base(jsonObject)
         {
 
         }
 
-        public OrtoDatasComparison(OrtoDatasComparison ortoDatasComparison)
+        public OrtoDatasComparison(OrtoDatasComparison? ortoDatasComparison)
             : base(ortoDatasComparison)
         {
 
         }
 
         [JsonInclude, JsonPropertyName("OrtoDataComparisons")]
-        public IEnumerable<OrtoDataComparison> OrtoDataComparisons
+        public IEnumerable<OrtoDataComparison>? OrtoDataComparisons
         {
             get
             {
@@ -61,7 +61,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public string Reference
+        public string? Reference
         {
             get
             {
@@ -69,14 +69,14 @@ namespace DiGi.GIS.Emgu.CV.Classes
             }
         }
 
-        public Range<int> GetYears()
+        public Range<int>? GetYears()
         {
             if(sortedDictionary == null)
             {
                 return null;
             }
 
-            List<int> years = new List<int>();
+            List<int> years = [];
             foreach(DateTime dateTime in sortedDictionary.Keys)
             {
                 years.Add(dateTime.Year);
@@ -85,9 +85,9 @@ namespace DiGi.GIS.Emgu.CV.Classes
             return new Range<int>(years);
         }
 
-        public OrtoDataComparison GetOrtoDataComparison(DateTime dateTime)
+        public OrtoDataComparison? GetOrtoDataComparison(DateTime dateTime)
         {
-            if (!Core.Query.TryGetLowerValue(sortedDictionary, dateTime, out OrtoDataComparison result))
+            if (!Core.Query.TryGetLowerValue(sortedDictionary, dateTime, out OrtoDataComparison? result))
             {
                 return null;
             }

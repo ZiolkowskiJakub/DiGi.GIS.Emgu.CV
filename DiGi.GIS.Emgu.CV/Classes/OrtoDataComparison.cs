@@ -8,10 +8,10 @@ namespace DiGi.GIS.Emgu.CV.Classes
     public class OrtoDataComparison : Core.Classes.SerializableObject, Interfaces.IGISObject
     {
         [JsonInclude, JsonPropertyName("DateTime")]
-        private DateTime dateTime;
+        private readonly DateTime dateTime;
 
         [JsonIgnore]
-        private Dictionary<string, OrtoImageComparisonGroup> dictionary = new Dictionary<string, OrtoImageComparisonGroup>();
+        private readonly Dictionary<string, OrtoImageComparisonGroup> dictionary = [];
 
         public OrtoDataComparison(DateTime dateTime, IEnumerable<OrtoImageComparisonGroup> ortoImageComparisonGroups)
         {
@@ -45,7 +45,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonInclude, JsonPropertyName("OrtoImageComparisonGroups")]
-        public IEnumerable<OrtoImageComparisonGroup> OrtoImageComparisonGroups
+        public IEnumerable<OrtoImageComparisonGroup>? OrtoImageComparisonGroups
         {
             get
             {
@@ -59,7 +59,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
                 {
                     foreach(OrtoImageComparisonGroup ortoImageComparisonGroup in value)
                     {
-                        if(ortoImageComparisonGroup == null)
+                        if(ortoImageComparisonGroup?.Name is null)
                         {
                             continue;
                         }

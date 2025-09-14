@@ -7,12 +7,12 @@ namespace DiGi.GIS.Emgu.CV.Classes
 {
     public class OrtoDatasComparisonFile : Core.IO.File.Classes.StorageFile<OrtoDatasComparison>, IGISObject
     {
-        public override UniqueReference GetUniqueReference(OrtoDatasComparison ortoDatasComparison)
+        public override UniqueReference? GetUniqueReference(OrtoDatasComparison? ortoDatasComparison)
         {
             return GetUniqueReference(ortoDatasComparison?.Reference);
         }
 
-        public static UniqueReference GetUniqueReference(string reference)
+        public static UniqueReference? GetUniqueReference(string? reference)
         {
             if (reference == null)
             {
@@ -22,19 +22,19 @@ namespace DiGi.GIS.Emgu.CV.Classes
             return new UniqueIdReference(typeof(OrtoDatas), reference);
         }
 
-        public OrtoDatasComparisonFile(OrtoDatasComparisonFile ortoDatasComparisonFile)
+        public OrtoDatasComparisonFile(OrtoDatasComparisonFile? ortoDatasComparisonFile)
             : base(ortoDatasComparisonFile)
         {
 
         }
 
-        public OrtoDatasComparisonFile(JsonObject jsonObject)
+        public OrtoDatasComparisonFile(JsonObject? jsonObject)
             :base(jsonObject)
         {
 
         }
 
-        public OrtoDatasComparisonFile(string path)
+        public OrtoDatasComparisonFile(string? path)
             : base(path) 
         {
             

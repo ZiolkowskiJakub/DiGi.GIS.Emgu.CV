@@ -6,14 +6,14 @@ namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Modify
     {
-        public static UniqueReference AddValue(this OrtoDatasComparisonFile ortoDatasComparisonFile, Building2D builidng2D, OrtoDatasComparisonOptions ortoDatasComparisonOptions = null)
+        public static UniqueReference? AddValue(this OrtoDatasComparisonFile? ortoDatasComparisonFile, Building2D? builidng2D, OrtoDatasComparisonOptions? ortoDatasComparisonOptions = null)
         {
             if (ortoDatasComparisonFile == null || builidng2D == null)
             {
                 return null;
             }
 
-            string path = ortoDatasComparisonFile.Path;
+            string? path = ortoDatasComparisonFile.Path;
             if (string.IsNullOrWhiteSpace(path))
             {
                 return null;
@@ -25,18 +25,15 @@ namespace DiGi.GIS.Emgu.CV
                 return null;
             }
 
-            if (ortoDatasComparisonOptions == null)
-            {
-                ortoDatasComparisonOptions = new OrtoDatasComparisonOptions();
-            }
+            ortoDatasComparisonOptions ??= new OrtoDatasComparisonOptions();
 
-            OrtoDatasComparison ortoDatasComparison = Create.OrtoDatasComparison(builidng2D, directory, ortoDatasComparisonOptions.Years);
+            OrtoDatasComparison? ortoDatasComparison = Create.OrtoDatasComparison(builidng2D, directory, ortoDatasComparisonOptions.Years);
             if(ortoDatasComparison == null)
             {
                 return null;
             }
 
-            UniqueReference result = ortoDatasComparisonFile.AddValue(ortoDatasComparison);
+            UniqueReference? result = ortoDatasComparisonFile.AddValue(ortoDatasComparison);
             return result;
         }
     }

@@ -6,7 +6,7 @@ namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Create
     {
-        public static Mat Mat(this OrtoDatas ortoDatas, DateTime dateTime)
+        public static Mat? Mat(this OrtoDatas? ortoDatas, DateTime dateTime)
         {
             if(ortoDatas == null)
             {
@@ -16,15 +16,15 @@ namespace DiGi.GIS.Emgu.CV
             return Mat(ortoDatas.GetOrtoData(dateTime));
         }
 
-        public static Mat Mat(this OrtoData ortoData)
+        public static Mat? Mat(this OrtoData? ortoData)
         {
-            byte[] bytes = ortoData?.Bytes;
+            byte[]? bytes = ortoData?.Bytes;
             if (bytes == null)
             {
                 return null;
             }
 
-            Mat result = new Mat();
+            Mat result = new ();
             CvInvoke.Imdecode(bytes, global::Emgu.CV.CvEnum.ImreadModes.Color, result);
 
             return result;
