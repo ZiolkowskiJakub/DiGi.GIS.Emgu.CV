@@ -25,7 +25,7 @@ namespace DiGi.GIS.Emgu.CV
             }
 
             Mat result = new ();
-            CvInvoke.Imdecode(bytes, global::Emgu.CV.CvEnum.ImreadModes.Color, result);
+            CvInvoke.Imdecode(bytes, global::Emgu.CV.CvEnum.ImreadModes.Unchanged, result);
 
             return result;
         }
