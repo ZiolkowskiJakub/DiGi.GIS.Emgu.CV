@@ -8,7 +8,7 @@ namespace DiGi.GIS.Emgu.CV
     {
         public static Mat? Mat(this OrtoDatas? ortoDatas, DateTime dateTime)
         {
-            if(ortoDatas == null)
+            if (ortoDatas == null)
             {
                 return null;
             }
@@ -24,11 +24,10 @@ namespace DiGi.GIS.Emgu.CV
                 return null;
             }
 
-            Mat result = new ();
+            Mat result = new();
             CvInvoke.Imdecode(bytes, global::Emgu.CV.CvEnum.ImreadModes.Unchanged, result);
 
             return result;
         }
     }
 }
-

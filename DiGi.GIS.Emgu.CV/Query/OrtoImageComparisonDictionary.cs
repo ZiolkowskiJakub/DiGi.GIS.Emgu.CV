@@ -18,20 +18,20 @@ namespace DiGi.GIS.Emgu.CV
             OrtoDataComparison? ortoDataComparison;
 
             ortoDataComparison = ortoDatasComparison.GetOrtoDataComparison(dateTime_1);
-            if(ortoDataComparison != null)
+            if (ortoDataComparison != null)
             {
                 IEnumerable<OrtoImageComparisonGroup>? ortoImageComparisonGroups = ortoDataComparison.OrtoImageComparisonGroups;
-                if(ortoImageComparisonGroups != null)
+                if (ortoImageComparisonGroups != null)
                 {
-                    foreach(OrtoImageComparisonGroup ortoImageComparisonGroup in ortoImageComparisonGroups)
+                    foreach (OrtoImageComparisonGroup ortoImageComparisonGroup in ortoImageComparisonGroups)
                     {
-                        if(ortoImageComparisonGroup?.Name == null)
+                        if (ortoImageComparisonGroup?.Name == null)
                         {
                             continue;
                         }
 
                         OrtoImageComparison? ortoImageComparison = ortoImageComparisonGroup.GetOrtoImageComparison(dateTime_2);
-                        if(ortoImageComparison != null)
+                        if (ortoImageComparison != null)
                         {
                             result[ortoImageComparisonGroup.Name] = ortoImageComparison;
                         }
@@ -39,7 +39,7 @@ namespace DiGi.GIS.Emgu.CV
                 }
             }
 
-            if(result.Count == 0)
+            if (result.Count == 0)
             {
                 ortoDataComparison = ortoDatasComparison.GetOrtoDataComparison(dateTime_2);
                 if (ortoDataComparison != null)
@@ -68,4 +68,3 @@ namespace DiGi.GIS.Emgu.CV
         }
     }
 }
-

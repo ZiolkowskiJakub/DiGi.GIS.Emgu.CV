@@ -87,10 +87,10 @@ namespace DiGi.GIS.Emgu.CV
             }
 
             Dictionary<string, GuidReference>? dictionary = [];
-            foreach(Building2D building2D in building2Ds)
+            foreach (Building2D building2D in building2Ds)
             {
                 string? reference = building2D?.Reference;
-                if(reference == null)
+                if (reference == null)
                 {
                     continue;
                 }
@@ -99,17 +99,17 @@ namespace DiGi.GIS.Emgu.CV
             }
 
             Dictionary<string, OrtoDatasComparison>? ortoDatasComparisonDictionary = OrtoDatasComparisonDictionary(directory, dictionary.Keys);
-            if(ortoDatasComparisonDictionary == null)
+            if (ortoDatasComparisonDictionary == null)
             {
                 return null;
             }
 
             Dictionary<GuidReference, OrtoDatasComparison>? result = [];
-            foreach(KeyValuePair<string, GuidReference> keyValuePair in dictionary)
+            foreach (KeyValuePair<string, GuidReference> keyValuePair in dictionary)
             {
                 string reference = keyValuePair.Key;
 
-                if(ortoDatasComparisonDictionary.TryGetValue(reference, out OrtoDatasComparison ortoDatasComparison))
+                if (ortoDatasComparisonDictionary.TryGetValue(reference, out OrtoDatasComparison ortoDatasComparison))
                 {
                     result[dictionary[reference]] = ortoDatasComparison;
                 }
@@ -119,4 +119,3 @@ namespace DiGi.GIS.Emgu.CV
         }
     }
 }
-

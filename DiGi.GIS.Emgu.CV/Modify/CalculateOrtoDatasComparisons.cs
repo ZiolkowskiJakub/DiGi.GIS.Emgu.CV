@@ -1,10 +1,10 @@
-﻿using DiGi.Core.Classes;
+﻿using DiGi.Core;
+using DiGi.Core.Classes;
 using DiGi.GIS.Classes;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using DiGi.GIS.Emgu.CV.Classes;
+using System.Collections.Generic;
 using System.Linq;
-using DiGi.Core;
+using System.Threading.Tasks;
 
 namespace DiGi.GIS.Emgu.CV
 {
@@ -44,12 +44,12 @@ namespace DiGi.GIS.Emgu.CV
                     List<Building2D> building2Ds_Temp_Temp = [.. building2Ds_Temp];
                     foreach (Building2D building2D in building2Ds_Temp)
                     {
-                        if(building2D is null)
+                        if (building2D is null)
                         {
                             continue;
                         }
 
-                        GuidReference guidReference = new (building2D);
+                        GuidReference guidReference = new(building2D);
                         if (dictionary_Temp.ContainsKey(guidReference))
                         {
                             building2Ds_Temp_Temp.Remove(building2D);
@@ -66,18 +66,18 @@ namespace DiGi.GIS.Emgu.CV
             }
 
             Dictionary<GuidReference, OrtoDatas>? dictionary_OrtoDatas = GIS.Query.OrtoDatasDictionary(directory, building2Ds_Temp);
-            if(dictionary_OrtoDatas == null || dictionary_OrtoDatas.Count == 0)
+            if (dictionary_OrtoDatas == null || dictionary_OrtoDatas.Count == 0)
             {
                 return null;
             }
 
             Dictionary<GuidReference, OrtoDatasComparison?> dictionary_OrtoDatasComparison = [];
-            foreach(GuidReference guidReference in dictionary_OrtoDatas.Keys)
+            foreach (GuidReference guidReference in dictionary_OrtoDatas.Keys)
             {
                 dictionary_OrtoDatasComparison[guidReference] = null;
             }
 
-            Parallel.For(0, dictionary_OrtoDatasComparison.Count, Core.Create.ParallelOptions(), i => 
+            Parallel.For(0, dictionary_OrtoDatasComparison.Count, Core.Create.ParallelOptions(), i =>
             {
                 GuidReference guidReference = dictionary_OrtoDatasComparison.Keys.ElementAt(i);
 
@@ -88,10 +88,10 @@ namespace DiGi.GIS.Emgu.CV
                 dictionary_OrtoDatasComparison[guidReference] = Create.OrtoDatasComparison(building2D, ortoDatas);
             });
 
-            using (OrtoDatasComparisonFile ortoDatasComparisonFile = new (path))
+            using (OrtoDatasComparisonFile ortoDatasComparisonFile = new(path))
             {
                 ortoDatasComparisonFile.Open();
-                foreach(OrtoDatasComparison? ortoDatasComparison in dictionary_OrtoDatasComparison.Values)
+                foreach (OrtoDatasComparison? ortoDatasComparison in dictionary_OrtoDatasComparison.Values)
                 {
                     ortoDatasComparisonFile.AddValue(ortoDatasComparison);
                 }
@@ -102,4 +102,3 @@ namespace DiGi.GIS.Emgu.CV
         }
     }
 }
-

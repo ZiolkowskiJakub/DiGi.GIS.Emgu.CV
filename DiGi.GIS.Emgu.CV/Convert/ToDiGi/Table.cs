@@ -9,12 +9,12 @@ namespace DiGi.GIS.Emgu.CV
     {
         public static Table? ToDiGi_Table(this IEnumerable<OrtoDatasComparison>? ortoDatasComparisons, IEnumerable<YearBuiltData>? yearBuiltDatas = null)
         {
-            if(ortoDatasComparisons == null)
+            if (ortoDatasComparisons == null)
             {
                 return null;
             }
 
-            Table result = new ();
+            Table result = new();
 
             result.AddRange(ortoDatasComparisons, yearBuiltDatas);
 

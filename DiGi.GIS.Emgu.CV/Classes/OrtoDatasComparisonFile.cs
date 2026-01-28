@@ -25,19 +25,16 @@ namespace DiGi.GIS.Emgu.CV.Classes
         public OrtoDatasComparisonFile(OrtoDatasComparisonFile? ortoDatasComparisonFile)
             : base(ortoDatasComparisonFile)
         {
-
         }
 
         public OrtoDatasComparisonFile(JsonObject? jsonObject)
-            :base(jsonObject)
+            : base(jsonObject)
         {
-
         }
 
         public OrtoDatasComparisonFile(string? path)
-            : base(path) 
+            : base(path)
         {
-            
         }
     }
 }

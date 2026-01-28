@@ -25,14 +25,11 @@ namespace DiGi.GIS.Emgu.CV.Classes
         public OrtoDatasComparisonOptions(OrtoDatasComparisonOptions ortoDatasComparisonOptions)
             : base(ortoDatasComparisonOptions)
         {
-
         }
 
         public OrtoDatasComparisonOptions(JsonObject jsonObject)
             : base(jsonObject)
         {
-
         }
     }
 }
-

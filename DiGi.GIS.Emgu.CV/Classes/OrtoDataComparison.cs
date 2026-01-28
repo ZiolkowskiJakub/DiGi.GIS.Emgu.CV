@@ -20,15 +20,14 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         public OrtoDataComparison(JsonObject jsonObject)
-            :base(jsonObject)
+            : base(jsonObject)
         {
-
         }
 
         public OrtoDataComparison(OrtoDataComparison ortoDataComparison)
             : base(ortoDataComparison)
         {
-            if(ortoDataComparison != null)
+            if (ortoDataComparison != null)
             {
                 dateTime = ortoDataComparison.dateTime;
                 OrtoImageComparisonGroups = ortoDataComparison.OrtoImageComparisonGroups;
@@ -55,11 +54,11 @@ namespace DiGi.GIS.Emgu.CV.Classes
             private set
             {
                 dictionary.Clear();
-                if(value != null)
+                if (value != null)
                 {
-                    foreach(OrtoImageComparisonGroup ortoImageComparisonGroup in value)
+                    foreach (OrtoImageComparisonGroup ortoImageComparisonGroup in value)
                     {
-                        if(ortoImageComparisonGroup?.Name is null)
+                        if (ortoImageComparisonGroup?.Name is null)
                         {
                             continue;
                         }

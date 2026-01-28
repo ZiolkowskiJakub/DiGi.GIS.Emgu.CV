@@ -20,7 +20,7 @@ namespace DiGi.GIS.Emgu.CV
             }
 
             string directory = System.IO.Path.GetDirectoryName(path);
-            if(!System.IO.Directory.Exists(directory))
+            if (!System.IO.Directory.Exists(directory))
             {
                 return null;
             }
@@ -28,7 +28,7 @@ namespace DiGi.GIS.Emgu.CV
             ortoDatasComparisonOptions ??= new OrtoDatasComparisonOptions();
 
             OrtoDatasComparison? ortoDatasComparison = Create.OrtoDatasComparison(builidng2D, directory, ortoDatasComparisonOptions.Years);
-            if(ortoDatasComparison == null)
+            if (ortoDatasComparison == null)
             {
                 return null;
             }

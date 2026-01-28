@@ -20,7 +20,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
 
         [JsonInclude, JsonPropertyName("HammingDistance")]
         private readonly int hammingDistace;
-        
+
         [JsonInclude, JsonPropertyName("HistogramCorrelation")]
         private readonly float histogramCorrelation;
 
@@ -46,7 +46,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         private readonly float oRBFeatureMatchingFactor;
 
         public OrtoImageComparison(
-            DateTime dateTime, 
+            DateTime dateTime,
             int hammingDistace,
             float colorDistributionShift,
             float grayHistogramsFactor,
@@ -58,12 +58,12 @@ namespace DiGi.GIS.Emgu.CV.Classes
             float meanLaplacianFactor,
             float standardDeviationLaplacianFactor,
             float opticalFlowAverageMagnitude,
-            float oRBFeatureMatchingFactor) 
+            float oRBFeatureMatchingFactor)
         {
             this.dateTime = dateTime;
             this.hammingDistace = hammingDistace;
             this.colorDistributionShift = colorDistributionShift;
-            this.grayHistogramsFactor= grayHistogramsFactor;
+            this.grayHistogramsFactor = grayHistogramsFactor;
             this.averageColorSimilarity = averageColorSimilarity;
             this.histogramCorrelation = histogramCorrelation;
             this.shapeComparisonFactor = shapeComparisonFactor;
@@ -78,13 +78,12 @@ namespace DiGi.GIS.Emgu.CV.Classes
         public OrtoImageComparison(JsonObject jsonObject)
             : base(jsonObject)
         {
-
         }
 
         public OrtoImageComparison(OrtoImageComparison ortoImageComparison)
             : base(ortoImageComparison)
         {
-            if(ortoImageComparison != null)
+            if (ortoImageComparison != null)
             {
                 dateTime = ortoImageComparison.dateTime;
                 hammingDistace = ortoImageComparison.hammingDistace;
@@ -146,7 +145,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
                 return hammingDistace;
             }
         }
-        
+
         [JsonIgnore]
         public float HistogramCorrelation
         {

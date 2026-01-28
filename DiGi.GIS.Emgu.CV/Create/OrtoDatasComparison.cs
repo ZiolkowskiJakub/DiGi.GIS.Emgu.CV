@@ -109,7 +109,7 @@ namespace DiGi.GIS.Emgu.CV
 
                         DiGi.Emgu.CV.Query.LaplacianFactors(mat_1, mat_2, out double meanLaplacianFactor, out double standardDeviationLaplacianFactor);
 
-                        OrtoImageComparison ortoImageComparison = new (
+                        OrtoImageComparison ortoImageComparison = new(
                             tuple_2.Item1.DateTime,
                             hammingDistace,
                             System.Convert.ToSingle(colorDistributionShift),
@@ -127,20 +127,20 @@ namespace DiGi.GIS.Emgu.CV
                         ortoImageComparisons.Add(ortoImageComparison);
                     }
 
-                    OrtoImageComparisonGroup ortoImageComparisonGroup = new (names[k], ortoImageComparisons);
+                    OrtoImageComparisonGroup ortoImageComparisonGroup = new(names[k], ortoImageComparisons);
                     ortoImageComparisonGroups.Add(ortoImageComparisonGroup);
                 }
 
-                OrtoDataComparison ortoDataComparison = new (tuple_1.Item1.DateTime, ortoImageComparisonGroups);
+                OrtoDataComparison ortoDataComparison = new(tuple_1.Item1.DateTime, ortoImageComparisonGroups);
                 ortoDataComparisons.Add(ortoDataComparison);
             }
             //);
 
-            for(int i =0; i < tuples.Count; i++)
+            for (int i = 0; i < tuples.Count; i++)
             {
                 Tuple<OrtoData, Mat?[]> tuple = tuples[i];
 
-                for(int j =0; j < tuple.Item2.Length; j++)
+                for (int j = 0; j < tuple.Item2.Length; j++)
                 {
                     tuple.Item2[j]?.Dispose();
                 }
@@ -151,7 +151,7 @@ namespace DiGi.GIS.Emgu.CV
 
             string? reference = building2D?.Reference;
 
-            OrtoDatasComparison result = new (
+            OrtoDatasComparison result = new(
                 reference,
                 ortoDataComparisons);
 
@@ -159,4 +159,3 @@ namespace DiGi.GIS.Emgu.CV
         }
     }
 }
-

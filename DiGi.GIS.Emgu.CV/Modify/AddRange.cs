@@ -1,9 +1,9 @@
 ﻿using DiGi.Core.Classes;
 using DiGi.Core.IO.Table.Classes;
-using DiGi.GIS.Emgu.CV.Classes;
-using System.Collections.Generic;
-using System;
 using DiGi.GIS.Classes;
+using DiGi.GIS.Emgu.CV.Classes;
+using System;
+using System.Collections.Generic;
 
 namespace DiGi.GIS.Emgu.CV
 {
@@ -44,11 +44,11 @@ namespace DiGi.GIS.Emgu.CV
                     };
 
                     int? yearBuilt = null;
-                    if(yearBuiltDatas != null)
+                    if (yearBuiltDatas != null)
                     {
-                        foreach(YearBuiltData yearBuiltData in yearBuiltDatas)
+                        foreach (YearBuiltData yearBuiltData in yearBuiltDatas)
                         {
-                            if(ortoDatasComparison.Reference != yearBuiltData?.Reference)
+                            if (ortoDatasComparison.Reference != yearBuiltData?.Reference)
                             {
                                 continue;
                             }
@@ -66,7 +66,7 @@ namespace DiGi.GIS.Emgu.CV
                         continue;
                     }
 
-                    if(ortoDataComparison.OrtoImageComparisonGroups is not IEnumerable<OrtoImageComparisonGroup> ortoImageComparisonGroups)
+                    if (ortoDataComparison.OrtoImageComparisonGroups is not IEnumerable<OrtoImageComparisonGroup> ortoImageComparisonGroups)
                     {
                         continue;
                     }
@@ -77,7 +77,7 @@ namespace DiGi.GIS.Emgu.CV
 
                         for (int j = range_Years.Min; j <= range_Years.Max; j++)
                         {
-                            DateTime dateTime_2 = new (j, 1, 1);
+                            DateTime dateTime_2 = new(j, 1, 1);
 
                             OrtoImageComparison? ortoImageComparison = ortoImageComparisonGroup.GetOrtoImageComparison(dateTime_2);
                             if (ortoImageComparison == null)

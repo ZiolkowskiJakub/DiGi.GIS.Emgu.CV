@@ -15,23 +15,21 @@ namespace DiGi.GIS.Emgu.CV.Classes
         private readonly SortedDictionary<DateTime, OrtoDataComparison> sortedDictionary = [];
 
         public OrtoDatasComparison(
-            string? reference, 
-            IEnumerable<OrtoDataComparison>? ortoDataComparisons) 
+            string? reference,
+            IEnumerable<OrtoDataComparison>? ortoDataComparisons)
         {
             this.reference = reference;
             OrtoDataComparisons = ortoDataComparisons ?? [];
         }
 
         public OrtoDatasComparison(JsonObject? jsonObject)
-            :base(jsonObject)
+            : base(jsonObject)
         {
-
         }
 
         public OrtoDatasComparison(OrtoDatasComparison? ortoDatasComparison)
             : base(ortoDatasComparison)
         {
-
         }
 
         [JsonInclude, JsonPropertyName("OrtoDataComparisons")]
@@ -71,13 +69,13 @@ namespace DiGi.GIS.Emgu.CV.Classes
 
         public Range<int>? GetYears()
         {
-            if(sortedDictionary == null)
+            if (sortedDictionary == null)
             {
                 return null;
             }
 
             List<int> years = [];
-            foreach(DateTime dateTime in sortedDictionary.Keys)
+            foreach (DateTime dateTime in sortedDictionary.Keys)
             {
                 years.Add(dateTime.Year);
             }
