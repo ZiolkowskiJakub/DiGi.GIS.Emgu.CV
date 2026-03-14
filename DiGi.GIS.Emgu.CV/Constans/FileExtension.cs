@@ -1,4 +1,4 @@
-﻿namespace DiGi.GIS.Emgu.CV.Constants
+﻿namespace DiGi.GIS.Emgu.CV.Constans
 {
     public static class FileExtension
     {
