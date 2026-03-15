@@ -34,7 +34,7 @@ namespace DiGi.GIS.Emgu.CV
                 return result;
             }
 
-            string[] paths = System.IO.Directory.GetFiles(directory, string.Format("*.{0}", Constans.FileExtension.OrtoDatasComparisonFile));
+            string[] paths = System.IO.Directory.GetFiles(directory, string.Format("*.{0}", Constants.FileExtension.OrtoDatasComparisonFile));
             if (paths == null || paths.Length == 0)
             {
                 return result;
