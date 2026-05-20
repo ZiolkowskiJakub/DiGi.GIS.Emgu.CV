@@ -97,7 +97,7 @@ namespace DiGi.GIS.Emgu.CV
                         Mat? mat_2 = tuple_2.Item2[k];
 
                         int hammingDistace = DiGi.Emgu.CV.Query.HammingDistance(mat_1, mat_2);
-                        double grayHistogramsFactor = DiGi.Emgu.CV.Query.GrayHistogramFactor(mat_1, mat_2);
+                        double grayHistogramFactor = DiGi.Emgu.CV.Query.GrayHistogramFactor(mat_1, mat_2);
                         double averageColorSimilarity = DiGi.Emgu.CV.Query.AverageColorSimilarity(mat_1, mat_2);
                         double histogramCorrelation = DiGi.Emgu.CV.Query.HistogramCorrelation(mat_1, mat_2, false);
                         double shapeComparisonFactor = DiGi.Emgu.CV.Query.ShapeComparisonFactor(mat_1, mat_2);
@@ -113,7 +113,7 @@ namespace DiGi.GIS.Emgu.CV
                             tuple_2.Item1.DateTime,
                             hammingDistace,
                             System.Convert.ToSingle(colorDistributionShift),
-                            System.Convert.ToSingle(grayHistogramsFactor),
+                            System.Convert.ToSingle(grayHistogramFactor),
                             System.Convert.ToSingle(averageColorSimilarity),
                             System.Convert.ToSingle(histogramCorrelation),
                             System.Convert.ToSingle(shapeComparisonFactor),

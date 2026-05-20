@@ -15,8 +15,8 @@ namespace DiGi.GIS.Emgu.CV.Classes
         [JsonInclude, JsonPropertyName("DateTime")]
         private readonly DateTime dateTime;
 
-        [JsonInclude, JsonPropertyName("GrayHistogramsFactor")]
-        private readonly float grayHistogramsFactor;
+        [JsonInclude, JsonPropertyName("GrayHistogramFactor")]
+        private readonly float grayHistogramFactor;
 
         [JsonInclude, JsonPropertyName("HammingDistance")]
         private readonly int hammingDistace;
@@ -24,20 +24,8 @@ namespace DiGi.GIS.Emgu.CV.Classes
         [JsonInclude, JsonPropertyName("HistogramCorrelation")]
         private readonly float histogramCorrelation;
 
-        [JsonInclude, JsonPropertyName("ShapeComparisonFactor")]
-        private readonly float shapeComparisonFactor;
-
-        [JsonInclude, JsonPropertyName("StructuralSimilarityIndex_AbsoluteDifference")]
-        private readonly float structuralSimilarityIndex_AbsoluteDifference;
-
-        [JsonInclude, JsonPropertyName("StructuralSimilarityIndex_MatchTemplate")]
-        private readonly float structuralSimilarityIndex_MatchTemplate;
-
         [JsonInclude, JsonPropertyName("MeanLaplacianFactor")]
         private readonly float meanLaplacianFactor;
-
-        [JsonInclude, JsonPropertyName("StandardDeviationLaplacianFactor")]
-        private readonly float standardDeviationLaplacianFactor;
 
         [JsonInclude, JsonPropertyName("OpticalFlowAverageMagnitude")]
         private readonly float opticalFlowAverageMagnitude;
@@ -45,11 +33,23 @@ namespace DiGi.GIS.Emgu.CV.Classes
         [JsonInclude, JsonPropertyName("ORBFeatureMatchingFactor")]
         private readonly float oRBFeatureMatchingFactor;
 
+        [JsonInclude, JsonPropertyName("ShapeComparisonFactor")]
+        private readonly float shapeComparisonFactor;
+
+        [JsonInclude, JsonPropertyName("StandardDeviationLaplacianFactor")]
+        private readonly float standardDeviationLaplacianFactor;
+
+        [JsonInclude, JsonPropertyName("StructuralSimilarityIndex_AbsoluteDifference")]
+        private readonly float structuralSimilarityIndex_AbsoluteDifference;
+
+        [JsonInclude, JsonPropertyName("StructuralSimilarityIndex_MatchTemplate")]
+        private readonly float structuralSimilarityIndex_MatchTemplate;
+        
         public OrtoImageComparison(
             DateTime dateTime,
             int hammingDistace,
             float colorDistributionShift,
-            float grayHistogramsFactor,
+            float grayHistogramFactor,
             float averageColorSimilarity,
             float histogramCorrelation,
             float shapeComparisonFactor,
@@ -63,7 +63,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
             this.dateTime = dateTime;
             this.hammingDistace = hammingDistace;
             this.colorDistributionShift = colorDistributionShift;
-            this.grayHistogramsFactor = grayHistogramsFactor;
+            this.grayHistogramFactor = grayHistogramFactor;
             this.averageColorSimilarity = averageColorSimilarity;
             this.histogramCorrelation = histogramCorrelation;
             this.shapeComparisonFactor = shapeComparisonFactor;
@@ -88,7 +88,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
                 dateTime = ortoImageComparison.dateTime;
                 hammingDistace = ortoImageComparison.hammingDistace;
                 colorDistributionShift = ortoImageComparison.colorDistributionShift;
-                grayHistogramsFactor = ortoImageComparison.grayHistogramsFactor;
+                grayHistogramFactor = ortoImageComparison.grayHistogramFactor;
                 averageColorSimilarity = ortoImageComparison.averageColorSimilarity;
                 histogramCorrelation = ortoImageComparison.histogramCorrelation;
                 shapeComparisonFactor = ortoImageComparison.shapeComparisonFactor;
@@ -129,11 +129,11 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public float GrayHistogramsFactor
+        public float GrayHistogramFactor
         {
             get
             {
-                return grayHistogramsFactor;
+                return grayHistogramFactor;
             }
         }
 
@@ -156,47 +156,11 @@ namespace DiGi.GIS.Emgu.CV.Classes
         }
 
         [JsonIgnore]
-        public float ShapeComparisonFactor
-        {
-            get
-            {
-                return shapeComparisonFactor;
-            }
-        }
-
-        [JsonIgnore]
-        public float StructuralSimilarityIndex_AbsoluteDifference
-        {
-            get
-            {
-                return structuralSimilarityIndex_AbsoluteDifference;
-            }
-        }
-
-        [JsonIgnore]
-        public float StructuralSimilarityIndex_MatchTemplate
-        {
-            get
-            {
-                return structuralSimilarityIndex_MatchTemplate;
-            }
-        }
-
-        [JsonIgnore]
         public float MeanLaplacianFactor
         {
             get
             {
                 return meanLaplacianFactor;
-            }
-        }
-
-        [JsonIgnore]
-        public float StandardDeviationLaplacianFactor
-        {
-            get
-            {
-                return standardDeviationLaplacianFactor;
             }
         }
 
@@ -215,6 +179,42 @@ namespace DiGi.GIS.Emgu.CV.Classes
             get
             {
                 return oRBFeatureMatchingFactor;
+            }
+        }
+
+        [JsonIgnore]
+        public float ShapeComparisonFactor
+        {
+            get
+            {
+                return shapeComparisonFactor;
+            }
+        }
+
+        [JsonIgnore]
+        public float StandardDeviationLaplacianFactor
+        {
+            get
+            {
+                return standardDeviationLaplacianFactor;
+            }
+        }
+
+        [JsonIgnore]
+        public float StructuralSimilarityIndex_AbsoluteDifference
+        {
+            get
+            {
+                return structuralSimilarityIndex_AbsoluteDifference;
+            }
+        }
+
+        [JsonIgnore]
+        public float StructuralSimilarityIndex_MatchTemplate
+        {
+            get
+            {
+                return structuralSimilarityIndex_MatchTemplate;
             }
         }
     }

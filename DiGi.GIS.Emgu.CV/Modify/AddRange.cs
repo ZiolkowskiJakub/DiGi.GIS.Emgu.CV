@@ -89,7 +89,7 @@ namespace DiGi.GIS.Emgu.CV
 
                             dictionary[string.Format("{0}_{1}", prefix, nameof(ortoImageComparison.AverageColorSimilarity))] = double.IsNaN(ortoImageComparison.AverageColorSimilarity) ? 0 : ortoImageComparison.AverageColorSimilarity;
                             dictionary[string.Format("{0}_{1}", prefix, nameof(ortoImageComparison.ColorDistributionShift))] = double.IsNaN(ortoImageComparison.ColorDistributionShift) ? 0 : ortoImageComparison.ColorDistributionShift;
-                            dictionary[string.Format("{0}_{1}", prefix, nameof(ortoImageComparison.GrayHistogramsFactor))] = double.IsNaN(ortoImageComparison.GrayHistogramsFactor) ? 0 : ortoImageComparison.GrayHistogramsFactor;
+                            dictionary[string.Format("{0}_{1}", prefix, nameof(ortoImageComparison.GrayHistogramFactor))] = double.IsNaN(ortoImageComparison.GrayHistogramFactor) ? 0 : ortoImageComparison.GrayHistogramFactor;
                             dictionary[string.Format("{0}_{1}", prefix, nameof(ortoImageComparison.HammingDistance))] = ortoImageComparison.HammingDistance;
                             dictionary[string.Format("{0}_{1}", prefix, nameof(ortoImageComparison.HistogramCorrelation))] = double.IsNaN(ortoImageComparison.HistogramCorrelation) ? 0 : ortoImageComparison.HistogramCorrelation;
                             dictionary[string.Format("{0}_{1}", prefix, nameof(ortoImageComparison.ShapeComparisonFactor))] = double.IsNaN(ortoImageComparison.ShapeComparisonFactor) ? 0 : ortoImageComparison.ShapeComparisonFactor;
