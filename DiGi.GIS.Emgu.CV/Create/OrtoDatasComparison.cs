@@ -1,4 +1,4 @@
-﻿using DiGi.Geometry.Planar.Classes;
+using DiGi.Geometry.Planar.Classes;
 using DiGi.Geometry.Planar.Interfaces;
 using DiGi.GIS.Classes;
 using DiGi.GIS.Emgu.CV.Classes;
@@ -11,6 +11,13 @@ namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Create
     {
+        /// <summary>
+        /// Performs a comparison of orthodata associated with a building within a specified directory and year range.
+        /// </summary>
+        /// <param name="building2D">The <see cref="Building2D"/> instance to analyze.</param>
+        /// <param name="directory">The file system directory where the orthodata files are stored.</param>
+        /// <param name="years">The <see cref="Core.Classes.Range{T}"/> of years used to filter the orthodata.</param>
+        /// <returns>An <see cref="Classes.OrtoDatasComparison"/> object containing the comparison results, or <see langword="null"/> if any input is null, the directory is empty, or no data is found.</returns>
         public static OrtoDatasComparison? OrtoDatasComparison(this Building2D? building2D, string? directory, Core.Classes.Range<int>? years)
         {
             if (string.IsNullOrWhiteSpace(directory) || building2D == null || years == null || years.Length <= 0)
@@ -27,6 +34,12 @@ namespace DiGi.GIS.Emgu.CV
             return OrtoDatasComparison(building2D, ortoDatas);
         }
 
+        /// <summary>
+        /// Performs a detailed comparison of orthodata images for a specific building using various image processing metrics.
+        /// </summary>
+        /// <param name="building2D">The <see cref="Building2D"/> instance providing the geometric context for cropping and masking.</param>
+        /// <param name="ortoDatas">The collection of <see cref="OrtoDatas"/> to be compared.</param>
+        /// <returns>An <see cref="Classes.OrtoDatasComparison"/> object containing the calculated metrics, or <see langword="null"/> if the building or orthodata is null, or if required geometry is missing.</returns>
         public static OrtoDatasComparison? OrtoDatasComparison(this Building2D? building2D, OrtoDatas? ortoDatas)
         {
             if (ortoDatas == null)

@@ -8,6 +8,12 @@ namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Query
     {
+        /// <summary>
+        /// Retrieves a dictionary of ortho data comparisons for the specified references from files within the given directory.
+        /// </summary>
+        /// <param name="directory">The path to the directory containing the comparison files.</param>
+        /// <param name="references">A collection of reference strings to look up.</param>
+        /// <returns>A dictionary where keys are reference strings and values are <see cref="OrtoDatasComparison"/> objects, or <c>null</c> if the directory is invalid or references are null.</returns>
         public static Dictionary<string, OrtoDatasComparison>? OrtoDatasComparisonDictionary(string? directory, IEnumerable<string>? references)
         {
             if (string.IsNullOrWhiteSpace(directory) || !System.IO.Directory.Exists(directory) || references == null)
@@ -79,6 +85,12 @@ namespace DiGi.GIS.Emgu.CV
             return result;
         }
 
+        /// <summary>
+        /// Retrieves a dictionary of ortho data comparisons for the specified buildings from files within the given directory.
+        /// </summary>
+        /// <param name="directory">The path to the directory containing the comparison files.</param>
+        /// <param name="building2Ds">A collection of <see cref="Building2D"/> objects used to derive references.</param>
+        /// <returns>A dictionary where keys are <see cref="GuidReference"/> and values are <see cref="OrtoDatasComparison"/> objects, or <c>null</c> if the directory is invalid or building list is null.</returns>
         public static Dictionary<GuidReference, OrtoDatasComparison>? OrtoDatasComparisonDictionary(string? directory, IEnumerable<Building2D>? building2Ds)
         {
             if (string.IsNullOrWhiteSpace(directory) || !System.IO.Directory.Exists(directory) || building2Ds == null)

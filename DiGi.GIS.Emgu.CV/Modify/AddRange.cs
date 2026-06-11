@@ -9,6 +9,13 @@ namespace DiGi.GIS.Emgu.CV
 {
     public static partial class Modify
     {
+        /// <summary>
+        /// Adds a range of ortho-data comparison results and associated building year data to the specified table.
+        /// </summary>
+        /// <param name="table">The <see cref="Table" /> instance where the processed data rows will be added.</param>
+        /// <param name="ortoDatasComparisons">A collection of <see cref="OrtoDatasComparison" /> objects containing the image comparison data to process.</param>
+        /// <param name="yearBuiltDatas">An optional collection of <see cref="YearBuiltData" /> objects used to associate building years with the references.</param>
+        /// <returns>A <see cref="T:System.Boolean" /> value indicating whether the data was successfully added to the table; returns <c>false</c> if the table or comparisons collection is null.</returns>
         public static bool AddRange(this Table? table, IEnumerable<OrtoDatasComparison>? ortoDatasComparisons, IEnumerable<YearBuiltData>? yearBuiltDatas = null)
         {
             if (ortoDatasComparisons == null || table == null)
