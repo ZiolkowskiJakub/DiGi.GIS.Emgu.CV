@@ -23,9 +23,7 @@ namespace DiGi.GIS.Emgu.CV.Classes
         /// </summary>
         /// <param name="reference">The reference identifier for the comparison data.</param>
         /// <param name="ortoDataComparisons">A collection of orthodata comparisons to be included in this set.</param>
-        public OrtoDatasComparison(
-            string? reference,
-            IEnumerable<OrtoDataComparison>? ortoDataComparisons)
+        public OrtoDatasComparison(string? reference, IEnumerable<OrtoDataComparison>? ortoDataComparisons)
         {
             this.reference = reference;
             OrtoDataComparisons = ortoDataComparisons ?? [];
